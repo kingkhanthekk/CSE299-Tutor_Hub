@@ -1,0 +1,94 @@
+.banner_100{
+	background-image: url(../images/banner.png);
+	background-repeat: no-repeat;
+	background-position: center;
+	background-size: cover;
+    margin-top: -20px;
+}
+.banner_100 .banner_overlay{
+	width: 100%;
+	height: 560px;
+}
+.banner_overlay .banner_area{
+	text-align: center;
+}
+.search-box{
+    display: flex;
+    width: 800px; 
+    margin: 0 auto;
+    margin-top: 200px;
+}
+.search-box .written-box{
+    padding: 30px;
+    font-size: 20px;
+}
+.search-box .submit-button{
+    padding: 16px;
+    font-size: 20px;
+
+}
+.search-box .submit-button:hover{
+    background-color: aquamarine;
+    color: chocolate;
+    transition: all linear 0.4s;
+
+}
+.footer {
+    left: 0;
+    bottom: 0;
+    padding-top: 5px;
+    height: 50px;
+    width: 100%;
+    background-color: #000;
+    color: white;
+    text-align: center;
+ }
+
+@media screen and (max-width: 992px) {
+    .search-box{
+        display: flex;
+        width: 500px; 
+        margin: 0 auto;
+        margin-top: 200px;
+    }
+    .search-box .written-box{
+        padding: 27px;
+        font-size: 16px;
+    }
+    .search-box .submit-button{
+        padding: 16px;
+        font-size: 16px;
+    
+    }
+    .search-box .submit-button:hover{
+        background-color: aquamarine;
+        color: chocolate;
+        transition: all linear 0.4s;
+    
+    }
+  }
+  
+  @media screen and (max-width: 700px) {
+    .search-box{
+        display: flex;
+        width: 300px; 
+        margin: 0 auto;
+        margin-top: 200px;
+    }
+    .search-box .written-box{
+        padding: 26px;
+        font-size: 14px;
+    }
+    .search-box .submit-button{
+        padding: 16px;
+        font-size: 14px;
+    
+
+    }
+    .search-box .submit-button:hover{
+        background-color: aquamarine;
+        color: chocolate;
+        transition: all linear 0.4s;
+    
+    }
+  }
