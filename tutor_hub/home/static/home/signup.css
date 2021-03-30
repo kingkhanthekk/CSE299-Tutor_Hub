@@ -1,0 +1,20 @@
+.col-centered {
+    float: none;
+    margin: 0 auto;
+  }
+  .colour {
+    color: #e6e0e0;
+  }
+  .colourtwo {
+    color: #0a0a0a;
+  }
+  .row {
+    color: #000;
+  }
+  .body {
+    background-image: url("../images/banner.png");
+    background-repeat: no-repeat;
+	  background-position: center;
+	  background-size: cover;
+  }
+ 

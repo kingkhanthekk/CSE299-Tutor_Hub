@@ -1,0 +1,128 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Sign in to Tutor Hub</title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+	<link rel="stylesheet" type="text/css" href="{% static 'home/signin.css' %}">
+</head>
+<body class="body">
+
+  <nav class="navbar navbar-inverse">
+    <div class="container-fluid">
+      <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>                        
+        </button>
+        <a class="navbar-brand" href="#">Tutor Hub</a>
+      </div>
+      <div class="collapse navbar-collapse" id="myNavbar">
+        <ul class="nav navbar-nav navbar-right">
+        <ul class="nav navbar-nav navbar-right">
+          <li><a href="{% url 'signup' %}"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+<div class="container " >
+	
+
+
+<form method="POST" action="">
+  {% csrf_token %}
+
+  
+<div class="row " >
+  <div class="col-xs-6 col-md-4 col-centered">
+      <div class="form-group">
+        
+        {% for message in  messages %}
+          <h3 id="message" class="text-danger">{{message}}</h3>
+      
+        {% endfor %}
+
+        
+      <h1>Sign In</h1>
+
+      
+      </div>
+
+  </div>
+</div>
+
+
+<div class="row " >
+    <div class="col-xs-6 col-md-4 col-centered">
+        <div class="form-group">
+      <label for="firstname">Username</label>
+      <div class="input-group input-lg">
+        <span class="glyphicon glyphicon-user input-group-addon" aria-hidden="true"></span>
+        <input type="text" class="form-control" name="username" />
+      </div>
+  </div>
+
+  </div>
+</div>
+<div class="row " >
+  <div class="col-xs-6 col-md-4 col-centered">
+      <div class="form-group">
+    <label for="password">Password</label>
+    <div class="input-group input-lg">
+  <span class="glyphicon glyphicon-asterisk input-group-addon" aria-hidden="true"></span>
+	<input type="Password" class="form-control" name="password" />
+      </div>
+</div>
+
+  </div>
+</div>
+
+<div class="row " >
+<div class="col-xs-6 col-md-4 col-centered">
+  <div class="checkbox">
+	
+	<label>
+		<input type="checkbox" name="">
+		Keep me logged in
+	</label>
+</div>
+
+  </div>
+</div>
+
+<div class="row "  >
+<div class="col-xs-6 col-md-4 col-centered">
+  <div class="form-group" >
+    
+	<input type="submit" value="Sign In" class="btn btn-default center-block colourtwo " name="Sign In" style="background-color: #E0F7FA "/>
+  <div>
+
+</div>
+
+  </div>
+</div>
+
+<p class="text-inverse text-center">Don't Have An Account? <a href="{% url 'signup' %}" style="background-color: azure;" data-abc="true">Sign Up</a></p>
+
+
+
+
+</form>
+
+</div>
+
+
+<script
+  			src="https://code.jquery.com/jquery-3.1.1.js"
+  			integrity="sha256-16cdPddA6VdVInumRGo6IbivbERE8p7CQR3HzTBuELA="
+  			crossorigin="anonymous"></script>
+
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+
+
+</body>
+</html>
