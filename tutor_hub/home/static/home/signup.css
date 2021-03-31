@@ -11,6 +11,9 @@
   .row {
     color: #000;
   }
+  .sign-up-button .login_btn{
+    padding: 30px;
+  }
   .body {
     background-image: url("../images/banner.png");
     background-repeat: no-repeat;

@@ -26,16 +26,20 @@ def signup(request):
         return redirect('home')
     else:
         form = SignUpForm()
-        
         if request.method == 'POST':
+            username = request.POST.get('username')
+            password1 = request.POST.get('password1')
+            password2 = request.POST.get('password1')
             form = SignUpForm(request.POST)
             if form.is_valid():
                 form.save()
                 messages.success(request, 'Account Successfully Created !')
                 return redirect('signin')
+            
         
         context = {'form':form}
         return render(request, 'home/signup.html', context)
+    
 
 def signin(request):
     '''
