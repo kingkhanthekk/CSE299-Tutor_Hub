@@ -7,32 +7,26 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="{% static 'home/landing_page.css' %}">
+    
     <title>Tutor Hub</title>
 </head>
 <body>
-        
-    <nav class="navbar navbar-inverse">
-        <div class="container-fluid">
-          <div class="navbar-header">
-          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-            
-              <span class="icon-bar"></span>
-              <span class="icon-bar"></span>
-              <span class="icon-bar"></span>                        
-            </button>
-            <a class="navbar-brand" href="#">Tutor Hub</a>
-          </div>
-          <div class="collapse navbar-collapse" id="myNavbar">
-            <ul class="nav navbar-nav navbar-right">
-            <ul class="nav navbar-nav navbar-right">
-              <li><a href="{% url 'signup' %}"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
-              <li><a href="{% url 'signin' %}"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
-            </ul>
-          </div>
-        </div>
-      </nav>
+  <nav>
+    <input id="nav-toggle" type="checkbox">
+    <div class="app_name">Tutor Hub</div>
+    <ul>
+        <li><a href="{% url 'signup' %}">Sign Up</a></li>
+        <li><a href="{% url 'signin' %}">Sign In</a></li>
+    </ul>
+    <label for="nav-toggle" class="three_lines">
+        <div class="line"></div>
+        <div class="line"></div>
+        <div class="line"></div>
+    </label>
+</nav>
       <div class="container-fluid banner_100" style="background-image: url('{% static 'images/banner.png' %}');">
         <div class="banner_overlay">
 			
