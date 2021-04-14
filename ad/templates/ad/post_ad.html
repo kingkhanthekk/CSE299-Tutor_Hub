@@ -1,0 +1,96 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{% static 'post_ad.css' %}">
+    <title>Post Ad</title>
+</head>
+<body>
+  <nav>
+    <input id="nav-toggle" type="checkbox">
+    <div class="app_name">Tutor Hub</div>
+    <ul>
+        <li><a href="{% url 'home' %}">Back to Home</a></li>
+    </ul>
+    <label for="nav-toggle" class="three_lines">
+        <div class="line"></div>
+        <div class="line"></div>
+        <div class="line"></div>
+    </label>
+  </nav>
+
+    <div class="row justify-content-center mt-5">
+      <div class="container post_ad">
+        <h2 class="bg-info mb-3 text-center"> Fill this form to post your ad</h2>
+      </div>
+  </div>
+  <div class="row justify-content-center mt-5">
+      <div class="col-md-5">
+          {% if error %}
+              <div class="alert alert-danger" role="alert">
+                  {{ error }}
+              </div>
+          {% endif %}
+          <form method="POST"> 
+            {% csrf_token %}
+            <label for="id_user">User:</label> 
+            <select class="form-control" name="user" required id="id_user">
+              <option value="" selected>Select User</option>
+              <option value="1">admin</option>
+              <option value="5">faasd</option>
+            </select>
+            <div class="form-group">
+              <label for="id_title">Title:</label> 
+              <input type="text" class="form-control" name="title" maxlength="150"  placeholder="Write an Eye Catchy Title"  id="id_title">
+            </div>
+            <div class="form-group">
+              <label for="id_area">Area:</label> 
+              <input type="text" class="form-control" name="area" placeholder="Banani" maxlength="150" id="id_area">
+            </div>
+            <div class="form-group">
+              <label for="id_subject">Subject:</label> 
+              <input type="text" class="form-control" name="subject" placeholder="Physics / Accounting" maxlength="150" id="id_subject">
+            </div>
+            <div class="form-group">
+              <label for="id_class_level">Class level:</label> 
+              <input type="text" class="form-control" placeholder="Class 6 / O-Level" name="class_level" maxlength="150" id="id_class_level">
+            </div>
+            <div class="form-group">
+              <label for="id_days">Days:</label> 
+              <input type="number" min="0" class="form-control" name="days" placeholder="4" step="1" required id="id_days">
+              <small class="text-muted ml-3"> Per Week </small>
+            </div>
+            <div class="form-group">
+              <label for="id_salary">Salary:</label> 
+              <input type="number" min="1000" class="form-control" name="salary" placeholder="5000 (min 1000)"  step="1e-1000" required id="id_salary">
+              <small class="text-muted ml-3"> Taka </small>
+            </div>
+            <div class="form-group">
+              <label for="id_gender">Gender:</label>
+               <select name="gender" class="form-control" aria-label="Default select example" id="id_gender">
+                  <option value="" selected>Select Gender</option>
+                  <option value="male">male</option>
+                  <option value="female">female</option>
+                </select>
+              </div>
+            <div class="form-group">
+              <label for="id_description">Description:</label> 
+              <textarea name="description" class="form-control" cols="40" rows="10" id="id_description">
+              </textarea>
+            </div>
+            <button type="submit" class="btn btn-primary align-self">Post Ad</button>
+
+          </form>
+      </div>
+  </div>
+
+
+    
+</body>
+</html>

@@ -1,9 +1,3 @@
-*{
-    margin: 0;
-    padding: 0;
-}
-
-
 body{
 	padding: 0;
 	margin: 0;
@@ -21,7 +15,7 @@ nav{
 }
 .app_name{
 	float: left;
-	width: 60%;
+	width: 65%;
 	font-size: 45px;
     font-family: 'Dancing Script', cursive;
 	color: #fff;
@@ -29,8 +23,8 @@ nav{
 }
 nav ul{
 	display: flex;
-	width: 40%;
-	margin-top: 20px;
+	width: 35%;
+    margin-top: 20px;
 }
 nav ul li{
 	list-style: none;
@@ -46,7 +40,6 @@ nav ul li a{
     margin-left: 50px;
 	text-decoration: none;
     font-family: serif;
-    
 
 }
 nav ul li a:hover{
@@ -113,20 +106,42 @@ nav .three_lines .line{
 	
 }
 
-.home{
-    margin-top: 100px;
-}
-.row .col-8{
-    width: 70%;
-}
-.row .col-4{
-    width: 30%;
-    margin-left: 50px;
-}
-.row{
-    display: flex;
-}
 
+.banner_100{
+    margin-top: 100px;
+	background-repeat: no-repeat;
+	background-position: center;
+	background-size: cover;
+    margin-top: -20px;
+}
+.banner_100 .banner_overlay{
+	width: 100%;
+	height: 560px;
+}
+.banner_overlay .banner_area{
+	text-align: center;
+}
+.search-box{
+    display: flex;
+    width: 800px; 
+    margin: 0 auto;
+    margin-top: 200px;
+}
+.search-box .written-box{
+    padding: 30px;
+    font-size: 20px;
+}
+.search-box .submit-button{
+    padding: 16px;
+    font-size: 20px;
+
+}
+.search-box .submit-button:hover{
+    background-color: aquamarine;
+    color: chocolate;
+    transition: all linear 0.4s;
+
+}
 .footer {
     left: 0;
     bottom: 0;
@@ -137,24 +152,52 @@ nav .three_lines .line{
     color: white;
     text-align: center;
  }
- 
 
 @media screen and (max-width: 992px) {
-    .row .col-8{
-        width: 70%;
+    .search-box{
+        display: flex;
+        width: 500px; 
+        margin: 0 auto;
+        margin-top: 200px;
     }
-    .row .col-4{
-        width: 30%;
-        margin-left: 50px;
+    .search-box .written-box{
+        padding: 27px;
+        font-size: 16px;
+    }
+    .search-box .submit-button{
+        padding: 16px;
+        font-size: 16px;
+    
+    }
+    .search-box .submit-button:hover{
+        background-color: aquamarine;
+        color: chocolate;
+        transition: all linear 0.4s;
+    
     }
   }
   
   @media screen and (max-width: 700px) {
-    .row .col-8{
-        width: 70%;
+    .search-box{
+        display: flex;
+        width: 300px; 
+        margin: 0 auto;
+        margin-top: 200px;
     }
-    .row .col-4{
-        width: 30%;
-        margin-left: 50px;
+    .search-box .written-box{
+        padding: 26px;
+        font-size: 14px;
+    }
+    .search-box .submit-button{
+        padding: 16px;
+        font-size: 14px;
+    
+
+    }
+    .search-box .submit-button:hover{
+        background-color: aquamarine;
+        color: chocolate;
+        transition: all linear 0.4s;
+    
     }
   }
