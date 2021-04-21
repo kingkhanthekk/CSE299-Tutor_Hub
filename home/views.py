@@ -4,6 +4,8 @@ from django.contrib import messages
 from django.contrib.auth import login, logout, authenticate
 from django.contrib.auth.decorators import login_required
 from .forms import SignUpForm
+from django.contrib.auth.models import Group
+from home.models import Student,Tutor
 
 
 def landing(request):
@@ -14,6 +16,7 @@ def landing(request):
     
     '''
     return render(request, 'home/landing.html')
+
 
 
 def signup(request):
@@ -27,12 +30,20 @@ def signup(request):
     else:
         form = SignUpForm()
         if request.method == 'POST':
-            username = request.POST.get('username')
-            password1 = request.POST.get('password1')
-            password2 = request.POST.get('password1')
-            form = SignUpForm(request.POST)
-            if form.is_valid():
-                form.save()
+            form = SignUpForm(data=request.POST)
+        if form.is_valid():
+            user = form.save()
+            group_name = str(form.cleaned_data.get('group'))
+            print(group_name)
+            group = Group.objects.get(name=group_name)
+            user.groups.add(group)
+            if group_name == 'student':
+                Student.objects.create(user=user)
+                messages.success(request, 'Account Successfully Created !')
+                return redirect('signin')
+            
+            else:
+                Tutor.objects.create(user=user)
                 messages.success(request, 'Account Successfully Created !')
                 return redirect('signin')
             
@@ -76,14 +87,3 @@ def signout(request):
     '''
     logout(request)
     return redirect('landing')
-
-
-@login_required
-def home(request):
-    '''
-    This will redirect the url to the homepage
-    :type request: HttpResponse
-    :param request: Takes the request to show home.html
-    
-    '''
-    return render(request, 'home/home.html')

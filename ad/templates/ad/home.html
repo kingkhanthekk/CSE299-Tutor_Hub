@@ -1,4 +1,5 @@
 {% load static %}
+{% load group %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -16,9 +17,9 @@
     <input id="nav-toggle" type="checkbox">
     <div class="app_name">Tutor Hub</div>
     <ul>
-        <li><a href="#">Profile</a></li>
-        <li><a href="{% url 'createAd' %}">Create Post</a></li>
+        <li><a href="{% url 'createAd' %}">Create Ad</a></li>
         <li><a href="{% url 'signout' %}">Sign Out</a></li>
+        
     </ul>
     <label for="nav-toggle" class="three_lines">
         <div class="line"></div>
@@ -44,13 +45,22 @@
                   <a href="#" class="btn btn-info ">View More</a>
                 </div>
                 <div class="card-footer text-muted text-center mt-1">
-                  Date Posted: {{ ad.ad_created|date:'H:i d-m-Y' }}
+                  Date Posted: {{ ad.ad_created|date:'H:i d-m-Y' }} by  {{ ad.user }}
                 </div>
               </div>
             </div>
             {% endfor %}
             
           </div>
+
+          <!-- {% if request.user|has_group:"student" %} 
+            <p>Student</p>
+          {% else %}
+            <p>Tutor</p>
+          {% endif %} <br> -->
+
+
+
 
 
           <div class="col-4">

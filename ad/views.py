@@ -5,6 +5,8 @@ from django.contrib.auth import get_user_model
 from .models import Ad_Student
 from .forms import Ad_Student_Form
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.models import Group
+from home.models import Student,Tutor
 
 
 @login_required
@@ -16,10 +18,8 @@ def createPostView(request):
     else:
         try: 
             form = Ad_Student_Form(request.POST)
-            newAd= form.save(commit=False)
-            newAd.user = request.user
-            newAd.save()
-            return redirect('ad/home.html')
+            form.save()
+            return redirect('home')
         except ValueError:
             return render(request, 'ad/post_ad.html', {'form': Ad_Student_Form(), 'error': 'Limit is Crossed' })
 

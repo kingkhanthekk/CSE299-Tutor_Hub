@@ -1,0 +1,89 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{% static 'home/home.css' %}">
+    <title>Tutor Hub | Home </title>
+</head>
+<body>
+        
+  <nav>
+    <input id="nav-toggle" type="checkbox">
+    <div class="app_name">Tutor Hub</div>
+    <ul>
+        <li><a href="{% url 'signout' %}">Sign Out</a></li>
+    </ul>
+    <label for="nav-toggle" class="three_lines">
+        <div class="line"></div>
+        <div class="line"></div>
+        <div class="line"></div>
+    </label>
+</nav>
+      
+      <div class="container home">
+        <div class="row">
+          <div class="col-8">
+            <div class="advertise">
+              <div class="card text-left">
+                <div class="card-header bg-success" >
+                  <h1 class="text-center">Ad Title</h1>
+                </div>
+                <div class="card-body text-center">
+                  <h3 class="card-title">Subject Name </h3>
+                  <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                  <a href="#" class="btn btn-info ">View More</a>
+                </div>
+                <div class="card-footer text-muted text-center mt-1">
+                  Date Posted: 2 days ago
+                </div>
+              </div>
+            </div>
+
+            <div class="advertise">
+              <div class="card text-left">
+                <div class="card-header bg-success" >
+                  <h1 class="text-center">Ad Title</h1>
+                </div>
+                <div class="card-body text-center">
+                  <h3 class="card-title">Subject Name </h3>
+                  <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                  <a href="#" class="btn btn-info ">View More</a>
+                </div>
+                <div class="card-footer text-muted text-center mt-1">
+                  Date Posted: 2 days ago
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-4">
+            <div class="bg-dark border-right" id="sidebar-wrapper">
+              <div class="list-group list-group-flush">
+                <a href="#" class=" text-center list-group-item list-group-item-action bg-light">Button</a>
+                <a href="#" class=" text-center list-group-item list-group-item-action bg-light">Button</a>
+                <a href="#" class=" text-center list-group-item list-group-item-action bg-light">Button</a>
+                <a href="#" class=" text-center list-group-item list-group-item-action bg-light">Button</a>
+                <a href="#" class=" text-center list-group-item list-group-item-action bg-light">Button</a>
+                <a href="#" class=" text-center list-group-item list-group-item-action bg-light">Button</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+<!--         
+        <div class="container-fluid footer">
+          
+          <p>&copy; Tutor Hub <br> Group - 3</p>
+        </div> -->
+      
+ 
+
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+</body>
