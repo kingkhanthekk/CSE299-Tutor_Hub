@@ -1,0 +1,152 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  padding: 0;
+  margin: 0;
+}
+nav {
+  position: fixed;
+  z-index: 99999;
+  left: 0;
+  right: 0;
+  top: 0;
+  padding: 0 10%;
+  height: 80px;
+  background-color: #284df2;
+  display: flex;
+}
+.app_name {
+  float: left;
+  width: 50%;
+  font-size: 45px;
+  font-family: "Dancing Script", cursive;
+  color: #fff;
+  line-height: 80px;
+}
+nav ul {
+  display: flex;
+  width: 50%;
+  margin-top: 20px;
+}
+nav ul li {
+  list-style: none;
+}
+nav ul li a {
+  display: inline-block;
+  font-size: 16px;
+  line-height: 20px;
+  font-weight: bold;
+  border-radius: 10px;
+  padding: 10px 15px;
+  color: #fff;
+  margin-left: 50px;
+  text-decoration: none;
+  font-family: serif;
+}
+nav ul li a:hover {
+  color: brown;
+  transition: all linear 0.4s;
+  background-color: #fff;
+}
+#nav-toggle {
+  display: none;
+}
+nav .three_lines {
+  display: none;
+  position: absolute;
+  right: 10%;
+  top: 50%;
+  transform: translateY(-50%);
+}
+nav .three_lines .line {
+  width: 30px;
+  height: 5px;
+  background-color: #fff;
+  margin: 5px;
+  border-radius: 3px;
+  transition: all linear 0.4s;
+}
+@media screen and (max-width: 768px) {
+  .app_name {
+    margin-left: 100px;
+  }
+
+  nav ul {
+    position: fixed;
+    z-index: 9999;
+    left: 0;
+    right: 0;
+    top: 60px;
+    bottom: 100%;
+    width: auto;
+    height: auto;
+    flex-direction: column;
+    justify-content: space-evenly;
+    background-color: rgba(0, 0, 0, 0.8);
+    overflow: hidden;
+    box-sizing: border-box;
+    transition: all linear 0.4s;
+  }
+  nav ul li a {
+    font-size: 14px;
+  }
+  nav .three_lines {
+    display: block;
+  }
+
+  nav :checked ~ ul {
+    bottom: 0;
+  }
+
+  nav :checked ~ .three_lines .line {
+    background-color: #000;
+  }
+}
+
+.home {
+  margin-top: 100px;
+}
+.row .col-8 {
+  width: 70%;
+}
+.row .col-4 {
+  width: 30%;
+  margin-left: 50px;
+}
+.row {
+  display: flex;
+}
+
+.footer {
+  left: 0;
+  bottom: 0;
+  padding-top: 5px;
+  height: 50px;
+  width: 100%;
+  background-color: #000;
+  color: white;
+  text-align: center;
+}
+
+@media screen and (max-width: 992px) {
+  .row .col-8 {
+    width: 70%;
+  }
+  .row .col-4 {
+    width: 30%;
+    margin-left: 50px;
+  }
+}
+
+@media screen and (max-width: 700px) {
+  .row .col-8 {
+    width: 70%;
+  }
+  .row .col-4 {
+    width: 30%;
+    margin-left: 50px;
+  }
+}
