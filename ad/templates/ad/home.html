@@ -17,7 +17,14 @@
     <input id="nav-toggle" type="checkbox">
     <div class="app_name">Tutor Hub</div>
     <ul>
-        <li><a href="{% url 'createAd' %}">Create Ad</a></li>
+        <li><a href="#">{{ user.username }}'s Profile</a></li>
+
+        {% if request.user|has_group:"student" %} 
+          <li><a href="{% url 'findTutor' %}">Create Ad</a></li>
+        {% else %}
+          <li><a href="{% url 'findStudent' %}">Create Ad</a></li>
+        {% endif %} <br>
+        
         <li><a href="{% url 'signout' %}">Sign Out</a></li>
         
     </ul>
@@ -31,33 +38,53 @@
       <div class="container home">
         <div class="row">
           <div class="col-8">
+
+            {% if request.user|has_group:"tutor" %} 
             
-            {% for ad in ads %}
-            <div class="advertise">
-              <div class="card text-left">
-                <div class="card-header bg-success" >
-                  <h1 class="text-center">{{ ad.title }}</h1>
-                </div>
-                <div class="card-body text-center">
-                  <h3 class="card-title">{{ ad.subject }}</h3>
-                  <p class="card-text">Days: {{ ad.days }} || Salary: {{ ad.salary }}</p>
-                  <p class="card-text">Gender: {{ ad.gender }} || Area: {{ ad.area }}</p>
-                  <a href="#" class="btn btn-info ">View More</a>
-                </div>
-                <div class="card-footer text-muted text-center mt-1">
-                  Date Posted: {{ ad.ad_created|date:'H:i d-m-Y' }} by  {{ ad.user }}
+              {% for ad in studentAds %}
+              <div class="advertise">
+                <div class="card text-left">
+                  <div class="card-header bg-success" >
+                    <h1 class="text-center">{{ ad.title }}</h1>
+                  </div>
+                  <div class="card-body text-center">
+                    <h3 class="card-title">{{ ad.subject }}</h3>
+                    <p class="card-text">Days: {{ ad.days }} || Salary: {{ ad.salary }}</p>
+                    <p class="card-text">Gender: {{ ad.gender }} || Area: {{ ad.area }}</p>
+                    <a href="#" class="btn btn-info ">View More</a>
+                  </div>
+                  <div class="card-footer text-muted text-center mt-1">
+                    Date Posted: {{ ad.ad_created|date:'H:i d-m-Y' }} By {{ad.user}}
+                  </div>
                 </div>
               </div>
-            </div>
-            {% endfor %}
+              {% endfor %}
+
+            {% else %}
+
+              {% for ad in tutorAds %}
+                <div class="advertise">
+                  <div class="card text-left">
+                    <div class="card-header bg-success" >
+                      <h1 class="text-center">{{ ad.title }}</h1>
+                    </div>
+                    <div class="card-body text-center">
+                      <h3 class="card-title">{{ ad.subject }}</h3>
+                      <p class="card-text">Days: {{ ad.days }} || Expected Salary: {{ ad.expected_salary }}</p>
+                      <p class="card-text">Gender: {{ ad.gender }} || Expected Area: {{ ad.expected_area }}</p>
+                      <a href="#" class="btn btn-info ">View More</a>
+                    </div>
+                    <div class="card-footer text-muted text-center mt-1">
+                      Date Posted: {{ ad.ad_created|date:'H:i d-m-Y' }} By {{ad.user}}
+                    </div>
+                  </div>
+                </div>
+                {% endfor %}
+            {% endif %}
             
           </div>
 
-          <!-- {% if request.user|has_group:"student" %} 
-            <p>Student</p>
-          {% else %}
-            <p>Tutor</p>
-          {% endif %} <br> -->
+          
 
 
 

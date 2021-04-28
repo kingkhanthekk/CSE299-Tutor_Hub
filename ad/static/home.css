@@ -21,7 +21,7 @@ nav{
 }
 .app_name{
 	float: left;
-	width: 50%;
+	width: 30%;
 	font-size: 45px;
     font-family: 'Dancing Script', cursive;
 	color: #fff;
@@ -29,7 +29,7 @@ nav{
 }
 nav ul{
 	display: flex;
-	width: 50%;
+	width: 70%;
 	margin-top: 20px;
 }
 nav ul li{
