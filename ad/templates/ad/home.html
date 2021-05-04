@@ -7,113 +7,165 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" >
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="{% static 'home.css' %}">
     <title>Tutor Hub | Home </title>
 </head>
 <body>
-        
-  <nav>
-    <input id="nav-toggle" type="checkbox">
-    <div class="app_name">Tutor Hub</div>
-    <ul>
-        <li><a href="#">{{ user.username }}'s Profile</a></li>
-
-        {% if request.user|has_group:"student" %} 
-          <li><a href="{% url 'findTutor' %}">Create Ad</a></li>
-        {% else %}
-          <li><a href="{% url 'findStudent' %}">Create Ad</a></li>
-        {% endif %} <br>
-        
-        <li><a href="{% url 'signout' %}">Sign Out</a></li>
-        
-    </ul>
-    <label for="nav-toggle" class="three_lines">
-        <div class="line"></div>
-        <div class="line"></div>
-        <div class="line"></div>
-    </label>
-</nav>
+<nav class="navbar nav navbar-expand-lg">
+  <div class="app_name" href="#">Tutor Hub</div>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNavDropdown">
+    <ul class="navbar-nav ml-auto">
       
-      <div class="container home">
-        <div class="row">
-          <div class="col-8">
+      <li class="nav-item">
+        {% if request.user|has_group:"student" %}
+          <a class="nav-link" href="{% url 'profile' %}">
+            <img src={{request.user.student.profile_pic.url}} class="rounded-circle" width="20">
+            {{ user.username }}'s Profile
+          </a>
+        {% else %}
+          <a class="nav-link" href="{% url 'profile' %}">
+            <img src={{request.user.tutor.profile_pic.url}} class="rounded-circle" width="20">
+            {{ user.username }}'s Profile
+          </a>
+        {% endif %}
+      </li>
+      {% if request.user|has_group:"student" %} 
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'findTutor' %}">Create Ad</a>
+        </li>
+      {% else %}
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'findStudent' %}">Create Ad</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Dashboard</a>
+        </li>
+      {% endif %} 
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'signout' %}">Sign Out</a>
+      </li>
+    </ul>
+  </div>
+</nav>
 
-            {% if request.user|has_group:"tutor" %} 
-            
-              {% for ad in studentAds %}
-              <div class="advertise">
-                <div class="card text-left">
-                  <div class="card-header bg-success" >
-                    <h1 class="text-center">{{ ad.title }}</h1>
-                  </div>
-                  <div class="card-body text-center">
-                    <h3 class="card-title">{{ ad.subject }}</h3>
-                    <p class="card-text">Days: {{ ad.days }} || Salary: {{ ad.salary }}</p>
-                    <p class="card-text">Gender: {{ ad.gender }} || Area: {{ ad.area }}</p>
-                    <a href="#" class="btn btn-info ">View More</a>
-                  </div>
-                  <div class="card-footer text-muted text-center mt-1">
-                    Date Posted: {{ ad.ad_created|date:'H:i d-m-Y' }} By {{ad.user}}
-                  </div>
-                </div>
+<div class="container justify-content-center">
+  <div class="row">
+    <div class="col-md-9">
+      {% if request.user|has_group:"tutor" %}
+        {% for ad in studentAds %}
+          <div class="course">
+            <div class="course-preview">
+                <a href="{% url 'profile_user' ad.user.id %}">
+                  <img src={{ad.user.student.profile_pic.url}} class="rounded-circle" width="50">
+                  {{ad.user}}
+                </a>
+                <h2>{{ ad.subject }}</h2>
               </div>
-              {% endfor %}
-
-            {% else %}
-
-              {% for ad in tutorAds %}
-                <div class="advertise">
-                  <div class="card text-left">
-                    <div class="card-header bg-success" >
-                      <h1 class="text-center">{{ ad.title }}</h1>
-                    </div>
-                    <div class="card-body text-center">
-                      <h3 class="card-title">{{ ad.subject }}</h3>
-                      <p class="card-text">Days: {{ ad.days }} || Expected Salary: {{ ad.expected_salary }}</p>
-                      <p class="card-text">Gender: {{ ad.gender }} || Expected Area: {{ ad.expected_area }}</p>
-                      <a href="#" class="btn btn-info ">View More</a>
-                    </div>
-                    <div class="card-footer text-muted text-center mt-1">
-                      Date Posted: {{ ad.ad_created|date:'H:i d-m-Y' }} By {{ad.user}}
-                    </div>
-                  </div>
+              <div class="course-info">
+                  <h2>{{ ad.title }}</h2>
+                  <h5>{{ ad.days }} Days Per Week</h5>
+                  <h5>Salary: {{ ad.salary }} Taka</h5>
+                  <span class="info-text">
+                    Date Posted: {{ ad.ad_created|date:'H:i d-m-Y' }} 
+                  </span>
+                  <a class="view_more">View More</a>
+                  <a href="tel:{{ad.user.student.phone}}" class="view_more" style="right: 150px;">Contact</a>
                 </div>
-                {% endfor %}
-            {% endif %}
-            
+            </div>
+          {% endfor %}
+          <div aria-label="Page navigation example">
+            <ul class="pagination justify-content-center">
+              {% if studentAds.has_previous %}
+                <li class="page-item"><a class="page-link" href="?page={{studentAds.previous_page_number}}">&laquo;</a></li>
+              {% endif %}
+              {% for page in studentAds.paginator.page_range %}
+                {% if studentAds.number == page %}
+                  <li class="page-item active"><a class="page-link" href="?page={{page}}">{{page}}</a></li>
+                {% else %}
+                  <li class="page-item"><a class="page-link" href="?page={{page}}">{{page}}</a></li>
+                {% endif %}
+              {%endfor%}
+              {% if studentAds.has_next %}
+                <li class="page-item"><a class="page-link" href="?page={{studentAds.next_page_number}}">&raquo;</a></li>
+              {% endif %}
+            </ul>
           </div>
-
-          
-
-
-
-
-
-          <div class="col-4">
-            <div class="bg-dark border-right" id="sidebar-wrapper">
-              <div class="list-group list-group-flush">
-                <a href="#" class=" text-center list-group-item list-group-item-action bg-light">Button</a>
-                <a href="#" class=" text-center list-group-item list-group-item-action bg-light">Button</a>
-                <a href="#" class=" text-center list-group-item list-group-item-action bg-light">Button</a>
-                <a href="#" class=" text-center list-group-item list-group-item-action bg-light">Button</a>
-                <a href="#" class=" text-center list-group-item list-group-item-action bg-light">Button</a>
-                <a href="#" class=" text-center list-group-item list-group-item-action bg-light">Button</a>
+          {% else %}
+        {% for ad in tutorAds %}
+          <div class="course">
+            <div class="course-preview">
+              <a href="{% url 'profile_user' ad.user.id %}">
+                <img src={{ad.user.tutor.profile_pic.url}} class="rounded-circle" width="50">
+                {{ad.user}}
+              </a>
+                <h2>{{ ad.subject }}</h2>
               </div>
+              <div class="course-info">
+                  <h2>{{ ad.title }}</h2>
+                  <h5>{{ ad.days }} Days Per Week</h5>
+                  <h5>Salary Expecting: {{ ad.expected_salary }} Taka</h5>
+                  <span class="info-text">
+                    Date Posted: {{ ad.ad_created|date:'H:i d-m-Y' }} 
+                  </span>
+                  <a class="view_more">View More</a>
+                  <a href="tel:{{ad.user.tutor.phone}}" class="view_more" style="right: 150px;">Contact</a>
+                </div>
+            </div>
+            {% endfor %}
+
+                <div aria-label="Page navigation example">
+                  <ul class="pagination justify-content-center">
+                    {% if tutorAds.has_previous %}
+                      <li class="page-item"><a class="page-link" href="?page={{tutorAds.previous_page_number}}">&laquo;</a></li>
+                    {% endif %}
+                    
+                    {% for page in tutorAds.paginator.page_range %}
+                      {% if tutorAds.number == page %}
+                      <li class="page-item active"><a class="page-link" href="?page={{page}}">{{page}}</a></li>
+                      {% else %}
+                      <li class="page-item"><a class="page-link" href="?page={{page}}">{{page}}</a></li>
+                      
+                      {% endif %}
+                    {%endfor%}
+  
+                    {% if tutorAds.has_next %}
+                      <li class="page-item"><a class="page-link" href="?page={{tutorAds.next_page_number}}">&raquo;</a></li>
+                    {% endif %}
+                    
+                  </ul>
+      
+                </div>
+            {% endif %}
+    </div>
+      
+          
+    <div class="col-md-3">
+      <h3 class="text-center bg-info text-warning">Filter Search</h3>
+        <form action="{% url 'home' %}">
+          <div class="bg-dark border-right" id="sidebar-wrapper">
+            <div class="list-group list-group-flush">
+             <input type="text">
+             <input type="text">
+             <input type="text">
+             <input type="text">
+             <input type="text">
+              <button type="submit" class="btn btn-success justify-content-center">Search</button>
             </div>
           </div>
-        </div>
+        </form>
       </div>
       
-<!--         
-        <div class="container-fluid footer">
           
-          <p>&copy; Tutor Hub <br> Group - 3</p>
-        </div> -->
-      
- 
+    </div>
+</div>
 
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" crossorigin="anonymous"></script>
+  
 </body>

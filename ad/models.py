@@ -3,13 +3,13 @@ from django.contrib.auth.models import User
 from django.urls import reverse     
 
 class Ad_Student(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
     title = models.CharField(max_length=150, null=True, blank=True)
     area = models.CharField(max_length=150, null=True, blank=True)
     subject = models.CharField(max_length=150, null=True, blank=True)
     class_level = models.CharField(max_length=150, null=True, blank=True)
-    days = models.DecimalField(decimal_places=0, max_digits=2)
-    salary = models.DecimalField(decimal_places=0, max_digits=10)
+    days = models.DecimalField(decimal_places=0, max_digits=2, default=3)
+    salary = models.CharField(max_length=10, default=3000)
     male ='male'
     female = 'female'
     other = 'other'
@@ -30,13 +30,13 @@ class Ad_Student(models.Model):
         return reverse('ad/home.html')
 
 class Ad_Tutor(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
     title = models.CharField(max_length=150, null=True, blank=True)
     expected_area = models.CharField(max_length=150, null=True, blank=True)
     subject = models.CharField(max_length=150, null=True, blank=True)
     class_level = models.CharField(max_length=150, null=True, blank=True)
-    days = models.DecimalField(decimal_places=0, max_digits=7)
-    expected_salary = models.DecimalField(decimal_places=0, max_digits=10)
+    days = models.DecimalField(decimal_places=0, max_digits=7, default=3)
+    expected_salary = models.CharField(max_length=10, default=3000)
     male ='male'
     female = 'female'
     other = 'other'

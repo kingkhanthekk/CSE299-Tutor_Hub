@@ -4,6 +4,17 @@ from django import forms
 from django.forms import ModelForm
 from home.models import Student,Tutor
 
+class EditForm_Tutor(ModelForm):
+    class Meta:
+        model = Tutor
+        fields = '__all__'
+        exclude = ['user']
+        
+class EditForm_Student(ModelForm):
+    class Meta:
+        model = Student
+        fields = '__all__'
+        exclude = ['user']
 
 class SignUpForm(UserCreationForm):
     first_name = forms.CharField(label='First Name', max_length=100)
@@ -20,7 +31,5 @@ class SignUpForm(UserCreationForm):
         }
 
         fields = ['first_name', 'last_name', 'username', 'email', 'password1', 'password2', 'group']
-
-
 
 

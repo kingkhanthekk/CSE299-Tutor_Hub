@@ -7,26 +7,28 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" >
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="{% static 'home.css' %}">
     <title>Tutor Hub | My Ad </title>
 </head>
 <body>
-        
-  <nav>
-    <input id="nav-toggle" type="checkbox">
-    <div class="app_name">Tutor Hub</div>
-    <ul>
-        <li><a href="{% url 'home' %}">Back to Home</a></li>
-        <li><a href="{% url 'signout' %}">Sign Out</a></li>
-        
-    </ul>
-    <label for="nav-toggle" class="three_lines">
-        <div class="line"></div>
-        <div class="line"></div>
-        <div class="line"></div>
-    </label>
-</nav>
+  <nav class="navbar nav navbar-expand-lg">
+    <div class="app_name" href="#">Tutor Hub</div>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavDropdown">
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item active">
+          <a class="nav-link" href="{% url 'home' %}">Back to Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'signout' %}">Sign Out</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
       
 <div class="container home">
     <div class="card-header bg-info" >
@@ -37,47 +39,52 @@
         {% if request.user|has_group:"student" %} 
         
           {% for ad in myStudentAds %}
-          <div class="advertise">
-            <div class="card text-left">
-              <div class="card-header bg-success" >
-                <h1 class="text-center">{{ ad.title }}</h1>
+          <div class="course">
+            <div class="course-preview">
+                <h2>{{ ad.subject }}</h2>
               </div>
-              <div class="card-body text-center">
-                <h3 class="card-title">Title: {{ ad.subject }}</h3>
-                <p class="card-text">Days: {{ ad.days }} || Salary: {{ ad.salary }}</p>
-                <p class="card-text">Gender: {{ ad.gender }} || Area: {{ ad.area }}</p>
-              </div>
-              <div class="card-footer text-muted text-center mt-1">
-                Date Posted: {{ ad.ad_created|date:'H:i d-m-Y' }} By {{ad.user}}
-              </div>
+              <div class="course-info">
+                  <h2>{{ ad.title }}</h2>
+                  <h5>{{ ad.days }} Days Per Week</h5>
+                  <h5>Salary: {{ ad.salary }} Taka</h5>
+                  <h5>Class / Level: {{ ad.class_level }}</h5>
+                  <h5>Gender of the Tutor: {{ ad.gender }}</h5>
+                  <h5>Overall description: {{ ad.description }}</h5>
+                  <span class="info-text">
+                    Date Posted: {{ ad.ad_created|date:'H:i d-m-Y' }} 
+                  </span>
+                  <a class="delete_post" href="{% url 'delete_post_student' ad.pk %}">Delete Post</a>
+                </div>
             </div>
-          </div>
           {% endfor %}
 
         {% else %}
 
           {% for ad in myTutorAds %}
-            <div class="advertise">
-              <div class="card text-left">
-                <div class="card-header bg-success" >
-                  <h1 class="text-center">{{ ad.title }}</h1>
-                </div>
-                <div class="card-body text-center">
-                  <h3 class="card-title">{{ ad.subject }}</h3>
-                  <p class="card-text">Days: {{ ad.days }} || Expected Salary: {{ ad.expected_salary }}</p>
-                  <p class="card-text">Gender: {{ ad.gender }} || Expected Area: {{ ad.expected_area }}</p>
-                </div>
-                <div class="card-footer text-muted text-center mt-1">
-                  Date Posted: {{ ad.ad_created|date:'H:i d-m-Y' }} By {{ad.user}}
-                </div>
+          <div class="course">
+            <div class="course-preview">
+                <h2>{{ ad.subject }}</h2>
               </div>
+              <div class="course-info">
+                  <h2>{{ ad.title }}</h2>
+                  <h5>{{ ad.days }} Days Per Week</h5>
+                  <h5>Salary Expecting: {{ ad.expected_salary }} Taka</h5>
+                  <h5>Class / Level: {{ ad.class_level }}</h5>
+                  <h5>Gender Preferrence: {{ ad.gender }}</h5>
+                  <h5>Overall description: {{ ad.description }}</h5>
+                  <span class="info-text">
+                    Date Posted: {{ ad.ad_created|date:'H:i d-m-Y' }} 
+                  </span>
+                  <a class="delete_post" href="{% url 'delete_post_tutor' ad.pk %}">Delete Post</a>
+                </div>
             </div>
             {% endfor %}
         {% endif %}
     
 
 
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" crossorigin="anonymous"></script>
+        
 </body>
