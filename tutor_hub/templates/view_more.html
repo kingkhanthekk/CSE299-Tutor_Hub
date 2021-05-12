@@ -1,77 +1,213 @@
-{% extends 'base.html' %} {% load static %} {% block head %}
-<link
-  rel="stylesheet"
-  href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
-  integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
-  crossorigin="anonymous"
-/>
-<title>View More Details of Ad</title>
-{% endblock %} {% block body %} {% block navlinks %}
-<li><a href="{% url 'home' %}">Home</a></li>
-<li><a href="#">Log Out</a></li>
-{% endblock %}
-<div class="view-more py-4" style="margin-top: 100px">
-  <div class="container">
-      <div class="col-lg-8">
-        <div class="card shadow-sm">
-          <div class="card-header bg-transparent border-0">
-            <h3 class="mb-0">
-              <i class="fas fa-clone pr-1">Details:</i>
-            </h3>
-            <div class="row text-center"><h2>{{ ad.title }}</h2></div>
-          </div>
-          <div class="card-body pt-0">
-            <table class="table table-bordered">
-              <!-- <tr>
-                <th width="30%">Title</th>
-                <td width="2%">:</td>
-                <td>{{ ad.title }}</td>
-              </tr>
-              <tr> -->
-                <th width="30%">Area</th>
-                <td width="2%">:</td>
-                <td>{{ ad.area }}</td>
-              </tr>
-              <tr>
-                <th width="30%">Subject</th>
-                <td width="2%">:</td>
-                <td>{{ ad.subject }}</td>
-              </tr>
-              <tr>
-                <th width="30%">Days</th>
-                <td width="2%">:</td>
-                <td>{{ ad.days }}</td>
-              </tr>
-              <tr>
-                <th width="30%">Class/Level</th>
-                <td width="2%">:</td>
-                <td>{{ ad.class_level }}</td>
-              </tr>
-              <tr>
-                <th width="30%">Salary</th>
-                <td width="2%">:</td>
-                <td>{{ ad.salary }}</td>
-              </tr>
-              <tr>
-                <th width="30%">Gender</th>
-                <td width="2%">:</td>
-                <td>{{ ad.gender }}</td>
-              </tr>
-              <tr>
-                <th width="30%">Date Posted</th>
-                <td width="2%">:</td>
-                <td>{{ ad.ad_created }}</td>
-              </tr>
-              <tr>
-                <th width="30%">Description</th>
-                <td width="2%">:</td>
-                <td>{{ ad.description }}</td>
-              </tr>
-            </table>
+{% load static %} {% load group %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+    />
+    <link rel="stylesheet" href="{% static 'css/home.css' %}" />
+    <title>Tutor Hub | View More Details of The Ad</title>
+  </head>
+  <body>
+    <nav class="navbar nav navbar-expand-lg">
+      <div class="app_name" href="#">Tutor Hub</div>
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-toggle="collapse"
+        data-target="#navbarNavDropdown"
+        aria-controls="navbarNavDropdown"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNavDropdown">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item">
+            {% if request.user|has_group:"student" %}
+            <a class="nav-link" href="{% url 'profile' %}">
+              <img
+                src="{{request.user.student.profile_pic.url}}"
+                class="rounded-circle"
+                width="20"
+              />
+              {{ user.username }}'s Profile
+            </a>
+            {% else %}
+            <a class="nav-link" href="{% url 'profile' %}">
+              <img
+                src="{{request.user.tutor.profile_pic.url}}"
+                class="rounded-circle"
+                width="20"
+              />
+              {{ user.username }}'s Profile
+            </a>
+            {% endif %}
+          </li>
+          {% if request.user|has_group:"student" %}
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'find_tutor' %}">Create Ad</a>
+          </li>
+          {% else %}
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'find_student' %}">Create Ad</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Dashboard</a>
+          </li>
+          {% endif %}
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'signout' %}">Sign Out</a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+    <div class="container justify-content-center">
+        <div class="row">
+          <div class="col-md-12">
+            {% if request.user|has_group:"tutor" %}
+              <div class="course">
+                <div class="course-preview">
+                  <h6>Student Name: <br> {{ad.user.first_name}} {{ad.user.last_name}}</h6>
+                  <h4>Subject: </h4> <h2> {{ ad.subject }}</h2>
+                </div>
+                <div class="col-lg-8">
+                  <div class="card shadow-sm">
+                    <div class="card-header bg-transparent border-0">
+                    <div class="card-body pt-0">
+                      <h3 class="ad-title text-center">{{ ad.title }}</h3> <br>
+                      <table class="table table-bordered">
+                        <tr>
+                          <th width="30%">Area of the Student</th>
+                          <td width="2%">:</td>
+                          <td>{{ ad.area }}</td>
+                        </tr>
+                        <!-- <tr>
+                          <th width="30%">Subject</th>
+                          <td width="2%">:</td>
+                          <td>{{ ad.subject }}</td>
+                        </tr> -->
+                        <tr>
+                          <th width="30%">No. of Days</th>
+                          <td width="2%">:</td>
+                          <td>{{ ad.days }}</td>
+                        </tr>
+                        <tr>
+                          <th width="30%">Class/Level of the Student</th>
+                          <td width="2%">:</td>
+                          <td>{{ ad.class_level }}</td>
+                        </tr>
+                        <tr>
+                          <th width="30%">Salary Per Month</th>
+                          <td width="2%">:</td>
+                          <td>{{ ad.salary }} taka</td>
+                        </tr>
+                        <tr>
+                          <th width="30%">Gender</th>
+                          <td width="2%">:</td>
+                          <td>{{ ad.gender }}</td>
+                        </tr>
+                        <tr>
+                          <th width="30%">Date Posted</th>
+                          <td width="2%">:</td>
+                          <td>{{ ad.ad_created|date:'H:i d-m-Y' }}</td>
+                        </tr>
+                        <tr>
+                          <th width="30%">Description</th>
+                          <td width="2%">:</td>
+                          <td>{{ ad.description }}</td>
+                        </tr>
+                      </table>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            {% else %}
+            <div class="course">
+              <div class="course-preview">
+                <h6>Tutor Name: <br> {{ad.user.first_name}} {{ad.user.last_name}}</h6>
+                <h4>Subject: </h4> <h2> {{ ad.subject }}</h2>
+              </div>
+              <div class="col-lg-8">
+                <div class="card shadow-sm">
+                  <div class="card-header bg-transparent border-0">
+                  <div class="card-body pt-0">
+                    <h3 class="ad-title text-center">{{ ad.title }}</h3> <br>
+                    <table class="table table-bordered">
+                      <tr>
+                        <th width="30%">Expected Area</th>
+                        <td width="2%">:</td>
+                        <td>{{ ad.expected_area }}</td>
+                      </tr>
+                      <!-- <tr>
+                        <th width="30%">Subject to Teach</th>
+                        <td width="2%">:</td>
+                        <td>{{ ad.subject }}</td>
+                      </tr> -->
+                      <tr>
+                        <th width="30%">No. of Days</th>
+                        <td width="2%">:</td>
+                        <td>{{ ad.days }}</td>
+                      </tr>
+                      <tr>
+                        <th width="30%">Class/Level of the Student</th>
+                        <td width="2%">:</td>
+                        <td>{{ ad.class_level }}</td>
+                      </tr>
+                      <tr>
+                        <th width="30%">Expected Salary Per Month</th>
+                        <td width="2%">:</td>
+                        <td>{{ ad.expected_salary }} taka</td>
+                      </tr>
+                      <tr>
+                        <th width="30%">Gender</th>
+                        <td width="2%">:</td>
+                        <td>{{ ad.gender }}</td>
+                      </tr>
+                      <tr>
+                        <th width="30%">Date Posted</th>
+                        <td width="2%">:</td>
+                        <td>{{ ad.ad_created|date:'H:i d-m-Y' }}</td>
+                      </tr>
+                      <tr>
+                        <th width="30%">Description</th>
+                        <td width="2%">:</td>
+                        <td>{{ ad.description }}</td>
+                      </tr>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+          {% endif %}
           </div>
         </div>
       </div>
-    </div>
-  </div>
-</div>
-{% endblock %}
+      
+    <script
+      src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>

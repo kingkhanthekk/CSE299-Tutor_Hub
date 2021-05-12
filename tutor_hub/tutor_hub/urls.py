@@ -1,7 +1,7 @@
 """tutor_hub URL Configuration
 
 The `urlpatterns` list routes URLs to views. For more information please see:
-    https://docs.djangoproject.com/en/3.1/topics/http/urls/
+    https://docs.djangoproject.com/en/3.0/topics/http/urls/
 Examples:
 Function views
     1. Add an import:  from my_app import views
@@ -14,14 +14,25 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path, include
-from tutorhub import views
+from django.urls import path
+from home import views
+from django.conf import settings
+from django.conf.urls.static import static
+from django.conf.urls import include
+from django.contrib.staticfiles.urls import staticfiles_urlpatterns
+import home
+import courses
+import mapbox
+import ad
 
 urlpatterns = [
+    path('', include('details.urls')),
+    path('', include('home.urls')),
+    path('', include('ad.urls')),
+    path('',include('courses.urls')),
+    path('',include('mapbox.urls')),
     path('admin/', admin.site.urls),
-    path('profile/', views.profile, name='profile'),
-    path('edit_profile/', views.edit_profile, name='edit_profile'),
-    path('delete_profile/', views.delete_profile, name='delete_profile'),
-    path('view_more/<int:pk>/', views.view_more, name='view_more'),
-    path('', views.home, name='home'),
+    path('accounts/', include('allauth.urls')),    
 ]
+urlpatterns += staticfiles_urlpatterns()
+urlpatterns += static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)

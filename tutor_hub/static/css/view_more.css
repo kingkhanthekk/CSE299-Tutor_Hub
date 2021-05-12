@@ -131,25 +131,6 @@ body {
 	background-color: #16aa60;
 	color: #fff;
 }
-
-.delete_post{
-	background-color: #284DF2;
-	border: 0;
-	border-radius: 50px;
-	box-shadow: 0 10px 10px rgba(0, 0, 0, 0.2);
-	color: #fff;
-	font-size: 16px;
-	padding: 7px 12px;
-	position: absolute;
-	bottom: 15px;
-	right: 60px;
-	letter-spacing: 1px;
-}
-.delete_post:hover{
-	transition: all linear 0.6s;
-	background-color: #ff0015;
-	color: #fff;
-}
 .course-info a{
 	text-decoration: none;
 }
