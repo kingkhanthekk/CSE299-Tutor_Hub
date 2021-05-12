@@ -1,0 +1,55 @@
+{%  extends 'main.html' %}
+{% load static %}
+{% load group %}
+{% block content %}
+{%load crispy_forms_tags %}
+
+
+
+<style>
+	.profile-pic{
+		max-width: 200px;
+		max-height:200px;
+		margin: 0 auto;
+		border-radius: 50%;
+	}
+</style>
+
+<br>
+
+  <div class="row">
+    <div class="col-md-3">
+      <div class="card card-body">
+        <a class="btn btn-warning" href="{% url 'profile' %}"> Back to Profile</a>
+		<hr>
+		<a class="btn btn-danger" href="{% url 'delete_profile' %}"> Delete account</a>
+        <hr>
+        <h3 style="text-align: center">Edit Profile</h3>
+        <hr>
+        {% if request.user|has_group:"student" %}
+        <img src={{request.user.student.profile_pic.url}} class="rounded-circle" width="200">
+        {% else %}
+		<img src="{% static 'images/profile1.png' %}"  class="rounded-circle" width="200">
+         {% endif %}
+      
+      </div>
+    </div>
+	<div class="col-md-9">
+		<div class="card card-body">
+		
+			<form method="POST" action="" enctype="multipart/form-data">
+				{% csrf_token %}
+				{{form|crispy}}
+		
+			<input class="btn btn-primary" type="submit" name="Update Information">
+			</form>
+    
+		</div>
+	</div>
+</div>
+
+
+
+{% endblock %}
+
+

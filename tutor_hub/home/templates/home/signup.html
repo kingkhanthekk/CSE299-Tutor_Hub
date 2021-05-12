@@ -1,0 +1,186 @@
+{% load static %}
+{% load socialaccount %}
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Register to Tutor Hub</title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" type="text/css" href="{% static 'home/signup.css' %}">
+  
+</head>
+<body class="body">
+
+  <nav>
+    <input id="nav-toggle" type="checkbox">
+    <div class="app_name">Tutor Hub</div>
+    <ul>
+        <li><a href="{% url 'signin' %}">Sign In</a></li>
+    </ul>
+    <label for="nav-toggle" class="three_lines">
+        <div class="line"></div>
+        <div class="line"></div>
+        <div class="line"></div>
+    </label>
+</nav>
+
+<div class="container signup_form" >
+	
+<form method="POST" action="">
+  {% csrf_token %}
+
+  <div class="row " >
+    <div class="col-xs-6 col-md-4 col-centered">
+        <div class="form-group">
+        <h3>Sign up</h3>
+        </div>
+
+    </div>
+  </div>
+  <div class="row " >
+    <div class="col-xs-6 col-md-4 col-centered">
+      <div id="styled-select">   
+        
+            
+            	{{form.group}}
+        
+      
+    </div> 
+        
+
+    </div>
+  </div>
+
+  <div class="row " >
+    <div class="col-xs-6 col-md-4 col-centered">
+        <div class="form-group">
+      <label for="username">{{ form.username.label }}</label>
+      <div class="input-group input-lg">
+        <span class="glyphicon glyphicon-user input-group-addon" aria-hidden="true"></span>
+        {{ form.username }}
+      </div>
+  </div>
+
+    </div>
+  </div>
+
+  <div class="row " >
+    <div class="col-xs-6 col-md-4 col-centered">
+        <div class="form-group">
+      <label for="first_name">{{ form.first_name.label }}</label>
+      <div class="input-group input-lg">
+    <span class="glyphicon glyphicon-user input-group-addon" aria-hidden="true"></span>
+    {{ form.first_name }}
+        </div>
+  </div>
+
+    </div>
+  </div>
+
+  <div class="row " >
+    <div class="col-xs-6 col-md-4 col-centered">
+        <div class="form-group">
+      <label for="last_name">{{ form.last_name.label }}</label>
+      <div class="input-group input-lg">
+    <span class="glyphicon glyphicon-user input-group-addon" aria-hidden="true"></span>
+    {{ form.last_name }}
+        </div>
+  </div>
+
+    </div>
+  </div>
+
+  <div class="row " >
+    <div class="col-xs-6 col-md-4 col-centered">
+        <div class="form-group">
+      <label for="email">{{ form.email.label }}</label>
+      <div class="input-group input-lg">
+    <span class="input-group-addon" aria-hidden="true">@</span>
+    {{ form.email }}
+        </div>
+  </div>
+
+    </div>
+  </div>
+
+  <div class="row " >
+    <div class="col-xs-6 col-md-4 col-centered">
+        <div class="form-group">
+      <label for="password">{{ form.password1.label }}</label>
+      <div class="input-group input-lg">
+    <span class="glyphicon glyphicon-asterisk input-group-addon" aria-hidden="true"></span>
+    {{ form.password1 }}
+        </div>
+  </div>
+
+    </div>
+  </div>
+
+  <div class="row " >
+    <div class="col-xs-6 col-md-4 col-centered">
+        <div class="form-group">
+      <label for="password2">{{ form.password2.label }}</label>
+      <div class="input-group input-lg">
+    <span class="glyphicon glyphicon-asterisk input-group-addon" aria-hidden="true"></span>
+   {{ form.password2 }}
+        </div>
+  </div>
+
+    </div>
+  </div>
+  {{error_msg}}
+
+<div class="col-xs-6 col-md-4 col-centered center-block">
+  {% for message in  messages %}
+  <h3 id="message" class="text-danger">{{message}}</h3>
+
+ {% endfor %} 
+</div>
+
+  <div class="row ">
+  <div class="col-xs-6 col-md-4 col-centered center-block">
+    <div class="form-group" >
+      <h6 >By registering, you agree to the terms and conditions.</h6>
+
+    </div>
+</div>
+
+
+  <div class="col-xs-6 col-md-4 col-centered ">
+    <div class="form-group" ><input class="btn login_btn" type="submit" value="Sign Up">
+
+    </div>
+  </div>
+
+  <div class="row"  >
+    <div class="col-xs-6 col-md-4 col-centered">
+      <div class="form-group" >
+      <center><label class="center-block">OR</label> </center>
+      <span class="social social-google-plus "></span>
+      </div>
+    </div>
+  </div>
+  
+<div class="row">
+  <div class="col-md-12"> <a class="btn btn-lg btn-google btn-block text-uppercase btn-outline" style="background-color: azure;" href="{% provider_login_url "google" %}"><img src="https://img.icons8.com/color/16/000000/google-logo.png"> Signup Using Google</a> </div>
+</div> <br>
+<p class="text-inverse text-center">Already have an account? <a href="{% url 'signin' %}" style="background-color: azure;" data-abc="true">Sign In</a></p>
+
+
+
+
+</form>
+
+</div>
+
+<script
+  			src="https://code.jquery.com/jquery-3.1.1.js"
+  			integrity="sha256-16cdPddA6VdVInumRGo6IbivbERE8p7CQR3HzTBuELA="
+  			crossorigin="anonymous"></script>
+
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+
+
+</body>
+</html>
