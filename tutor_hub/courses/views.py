@@ -33,3 +33,20 @@ def join_class(request):
             messages.info(request, "Invalid Class Code")
     context = {}
     return render(request, 'courses/join_class.html', context)
+
+
+@login_required
+def student_dashboard(request):
+    '''
+    This will redirect the url to the student_dashboard page, where a logged in student can view all of the class he/she joined
+
+    :param request: Takes the request to show student_dashboard.html
+    :type request: HttpResponse
+    :return: returns arequest for a html page with form data as dictonary format
+    :rtype: render request,html page,dictonary
+
+    '''
+    student = request.user.student
+    classes = Class.objects.filter(students=student)
+    context = {'classes': classes}
+    return render(request, 'courses/student_dashboard.html', context)
