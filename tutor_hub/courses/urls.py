@@ -5,4 +5,5 @@ from courses import views
 
 urlpatterns = [
     path('joinClass/', views.join_class, name='join_class'),
+    path('studentDashboard/', views.student_dashboard, name='student_dashboard'),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
