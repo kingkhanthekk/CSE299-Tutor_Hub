@@ -50,3 +50,22 @@ def student_dashboard(request):
     classes = Class.objects.filter(students=student)
     context = {'classes': classes}
     return render(request, 'courses/student_dashboard.html', context)
+
+
+def student_lecture_list_View(request, slug):
+    '''
+    This will redirect the url to the student_lecture_list page, where a logged in student can view all of the lectures in a list view of a specific class
+
+    :param request: Takes the request to show student_lecture_list_view.html
+    :type request: HttpResponse
+    :param slug: Takes the class slug from url to slect a particular class from class model
+    :type slug: Slug
+    :return: returns arequest for a html page with form data as dictonary format
+    :rtype: render request,html page,dictonary
+
+    '''
+    # student = request.user.student
+    class_object = Class.objects.get(slug=slug)
+    lectures = class_object.lessons.all()
+    context = {'lectures': lectures, 'class': class_object}
+    return render(request, 'courses/student_lecture_list_view.html', context)
