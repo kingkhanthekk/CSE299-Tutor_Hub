@@ -19,3 +19,30 @@ class CreateClassForm(ModelForm):
     class Meta:
         model = Class
         fields = ['title', 'description']
+
+
+class CreateLectureForm(forms.ModelForm):
+    """
+    This is a conceptual class representation of Create lecture Form for tutor to be used in template.
+    :param ModelForm: It inherits built-in functionalities of django `forms.ModelForm`, which handels all validations
+    :type ModelForm: `forms.ModelForm`
+
+    """
+    class Meta:
+        model = Lecture
+        fields = ('name', 'position', 'description', 'video', 'ppt', 'notes')
+
+
+class ReviewAndCommentForm(forms.ModelForm):
+    """
+        This is a conceptual class representation of Create lecture Form for tutor to be used in template.
+        :param ModelForm: It inherits built-in functionalities of django `forms.ModelForm`, which handels all validations
+        :type ModelForm: `forms.ModelForm`
+
+    """
+    comment = forms.CharField(label='subject', max_length=200, widget=forms.Textarea(
+        attrs={'class': "form-control", 'placeholder': "Write Subject"}))
+
+    class Meta:
+        model = ReviewAndComment
+        fields = ['comment', 'rate']
