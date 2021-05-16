@@ -1,0 +1,103 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Online Classroom | Tutor Lecture Detail</title>
+    <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700,900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" >
+    <link rel="stylesheet" href="{% static 'courses/css/tutorLlectureDetailView.css'%}">
+    
+</head>
+<body>
+    <div class="main-container">
+        <nav class="navbar nav navbar-expand-lg">
+            <div class="app_name">Online Class</div>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNavDropdown">
+              <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                  <a class="nav-link" href="{% url 'create_lecture' slug=class.slug %}">Add new Lecture</a>
+                </li> 
+                <li class="nav-item">
+                  <a class="nav-link" href="{% url 'enrolled_students' slug=class.slug %}">Enrolled Students</a>
+                </li>
+              </ul>
+            </div>
+          </nav>
+
+        <div class="body-content">
+            {% for lecture in lectures %}
+            <div class="content-item bg-info" >
+                <div class="pic">
+                    <p><h3> Lecture : {{lecture.name}} </h3></p>
+                    <h5>Created By: {{lecture.created_by.user.first_name}} {{lecture.created_by.user.last_name}} &nbsp;&nbsp;&nbsp; Created at: {{lecture.created_at}} <h5> 
+                    <h3>Lecture Desciption: </h3>
+                    <p>{{lecture.description}}</p>
+
+                    {% if lecture.video %}
+                        <div id="player-overlay">
+                            <video controls>
+                                <source src="{{lecture.video.url}}"  type="video/mp4">
+                            </video>
+                        </div>
+                    {% endif %}
+
+                    {% if lecture.video %}
+                        <a class="btn btn-primary" href="{{lecture.video.url}}" > Get Video</a>
+                        {%else%}
+                        <a href="#" >No Video Available</a>
+                    {% endif %}
+
+                    {% if lecture.ppt %}
+                        <a class="btn btn-warning" href="{{lecture.ppt.url}}"> Get Presentation</a>
+                        {%else%}
+                        <a href="#" >No Presentation Available</a>
+                    {% endif %}
+
+                    {% if lecture.notes %}
+                        <a class="btn btn-warning" href="{{lecture.notes.url}}"> Get Notes</a>
+                        {%else%}
+                        <a href="#" >No Notes Available</a>
+                    {% endif %}
+
+                </div>
+
+
+                
+            </div>
+            <div class="cont">
+                <!--  Start First Button  -->
+                <div class="fe">
+                    <button class="btn one"><a href="{% url 'tutor_lecture_update' class_slug=class.slug  slug=lecture.slug%}"> Update Lecture</a></button>
+                
+                </div>
+                <!--  End First Button  -->
+
+                <!--  Start Second Button  -->
+                <div class="fe">
+                    <button class="btn tow"><a href="{% url 'tutor_lecture_delete' class_slug=class.slug  slug=lecture.slug%}">Delete Lecture</a></button>
+                </div>
+                <!--  End Second Button  -->
+            </div>
+            {%endfor%}
+            
+        </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" crossorigin="anonymous"></script>
+    <script src="{% static 'courses/js/classroom.js'%}"></script>
+</body>
+</html>
+
+
+
+
+

@@ -1,0 +1,83 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Online Classroom | Lecture Update</title>
+    <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700,900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" >
+    <link rel="stylesheet"  href="{% static 'courses/css/createLecture.css'%}">
+    
+</head>
+<body>
+    <div class="main-container">
+        <nav class="navbar nav navbar-expand-lg">
+            <div class="app_name">Online Class</div>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNavDropdown">
+              <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                  <a class="nav-link" href="{% url 'create_class' %}">Create Class</a>
+                </li> 
+                <li class="nav-item">
+                  <a class="nav-link" href="{% url 'tutor_dashboard' %}">Dashboard</a>
+                </li>
+              </ul>
+            </div>
+          </nav>
+
+        <div class="body-content">
+            
+            <div class="new-lecture">
+                <form  action="" method="POST" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <div class="row">
+                        {{form.name}}
+                        <label for="fancy-text">Name</label>
+                    </div>
+                    <div class="row">
+                        {{form.position}}
+                        <label for="fancy-text">Lecture No</label>
+                    </div>
+                    <div class="row">
+                        {{form.description}}
+                        <label for="fancy-text">Description</label>
+                    </div>
+
+                    <div class="row">
+                        {{form.video}}
+                        <label for="fancy-textarea">Video</label>
+                    </div>
+
+                    <div class="row">
+                        
+                            {{form.ppt}}
+                    
+                        <label for="fancy-textarea">Ppt</label>
+                    </div>
+                    <div class="row">
+                        {{form.notes}}
+                        <label for="fancy-textarea">Notes</label>
+                    </div>
+        
+                    <button type="submit" tabindex="0">Update Lecture</button>
+
+                        {% for message in messages %}
+                            <div class="alert alert-danger" role="alert">{{messages}}</div>
+                        {% endfor %}
+                </form>
+            <div>
+        </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" crossorigin="anonymous"></script>
+    <script src="{% static 'courses/js/classroom.js'%}"></script>
+</body>
+</html>
