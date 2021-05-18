@@ -8,4 +8,6 @@ urlpatterns = [
     path('studentDashboard/', views.student_dashboard, name='student_dashboard'),
     path('student/class/<slug:slug>/', views.student_lecture_list_View,
          name='student_lecture_list_view'),
+    path('student/class/<str:class_slug>/<slug:slug>/detail',
+         views.student_lecture_detail_View, name='student_lecture_details'),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
