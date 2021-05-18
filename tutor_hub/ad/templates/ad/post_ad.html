@@ -39,9 +39,11 @@
           {% endif %}
           <form method="POST"> 
             {% csrf_token %}
-          <label for="id_user">User:</label> 
+            <label for="id_user">User:</label> 
             <select class="form-control" name="user" required id="id_user">
-              <option value="{{user.id}}" selected>{{user.username}}</option>
+              <option value="" selected>Select User</option>
+              <option value="1">admin</option>
+              <option value="5">faasd</option>
             </select>
             <div class="form-group">
               <label for="id_title">Title:</label> 

@@ -14,7 +14,7 @@
 </head>
 <body>
 <nav class="navbar nav navbar-expand-lg">
-  <div class="app_name" href="#">Tutor Hub</div>
+  <div class="app_name">Tutor Hub</div>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
@@ -23,12 +23,12 @@
       
       <li class="nav-item">
         {% if request.user|has_group:"student" %}
-          <a class="nav-link" href="{% url 'profile' %}">
+          <a style="margin-left: 30px;" class="nav-link" href="{% url 'profile' %}">
             <img src={{request.user.student.profile_pic.url}} class="rounded-circle" width="20">
             {{ user.username }}'s Profile
           </a>
         {% else %}
-          <a class="nav-link" href="{% url 'profile' %}">
+          <a style="margin-left: 30px;" class="nav-link" href="{% url 'profile' %}">
             <img src={{request.user.tutor.profile_pic.url}} class="rounded-circle" width="20">
             {{ user.username }}'s Profile
           </a>
@@ -36,31 +36,39 @@
       </li>
       {% if request.user|has_group:"student" %} 
         <li class="nav-item">
-          <a class="nav-link" href="{% url 'findTutor' %}">Create Ad</a>
+          <a style="margin-left: 30px;" class="nav-link" href="{% url 'find_tutor' %}">Create Ad</a>
+        </li>
+        <li class="nav-item">
+          <a style="margin-left: 30px;" class="nav-link" href="{% url 'student_dashboard' %}">Dashboard</a>
         </li>
       {% else %}
         <li class="nav-item">
-          <a class="nav-link" href="{% url 'findStudent' %}">Create Ad</a>
+          <a style="margin-left: 30px;" class="nav-link" href="{% url 'find_student' %}">Create Ad</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Dashboard</a>
+          <a style="margin-left: 30px;" class="nav-link" href="{% url 'tutor_dashboard' %}">Dashboard</a>
         </li>
-      {% endif %} 
+      {% endif %}
       <li class="nav-item">
-        <a class="nav-link" href="{% url 'signout' %}">Sign Out</a>
+        <a style="margin-left: 30px;" class="nav-link" href="{% url 'map_box' %}">Map Box</a>
+      </li> 
+      <li class="nav-item">
+        <a style="margin-left: 30px;" class="nav-link" href="{% url 'signout' %}">Sign Out</a>
       </li>
     </ul>
   </div>
 </nav>
-
+    {% if search %}
+    <h1 class="text-light">Searched results:</h1>
+    {% endif %}
 <div class="container justify-content-center">
   <div class="row">
     <div class="col-md-9">
       {% if request.user|has_group:"tutor" %}
-        {% for ad in studentAds %}
+        {% for ad in student_ads %}
           <div class="course">
             <div class="course-preview">
-                <a href="{% url 'profile_user' ad.user.id %}">
+                <a style="color: #fff;" href="{% url 'profile_user' ad.user.id %}">
                   <img src={{ad.user.student.profile_pic.url}} class="rounded-circle" width="50">
                   {{ad.user}}
                 </a>
@@ -73,33 +81,33 @@
                   <span class="info-text">
                     Date Posted: {{ ad.ad_created|date:'H:i d-m-Y' }} 
                   </span>
-                  <a class="view_more">View More</a>
+                  <a class="view_more" href="{% url 'view_more' ad.id %}" >View More</a>
                   <a href="tel:{{ad.user.student.phone}}" class="view_more" style="right: 150px;">Contact</a>
                 </div>
             </div>
           {% endfor %}
           <div aria-label="Page navigation example">
             <ul class="pagination justify-content-center">
-              {% if studentAds.has_previous %}
-                <li class="page-item"><a class="page-link" href="?page={{studentAds.previous_page_number}}">&laquo;</a></li>
+              {% if student_ads.has_previous %}
+                <li class="page-item"><a class="page-link" href="?page={{student_ads.previous_page_number}}">&laquo;</a></li>
               {% endif %}
-              {% for page in studentAds.paginator.page_range %}
-                {% if studentAds.number == page %}
+              {% for page in student_ads.paginator.page_range %}
+                {% if student_ads.number == page %}
                   <li class="page-item active"><a class="page-link" href="?page={{page}}">{{page}}</a></li>
                 {% else %}
                   <li class="page-item"><a class="page-link" href="?page={{page}}">{{page}}</a></li>
                 {% endif %}
               {%endfor%}
-              {% if studentAds.has_next %}
-                <li class="page-item"><a class="page-link" href="?page={{studentAds.next_page_number}}">&raquo;</a></li>
+              {% if student_ads.has_next %}
+                <li class="page-item"><a class="page-link" href="?page={{student_ads.next_page_number}}">&raquo;</a></li>
               {% endif %}
             </ul>
           </div>
           {% else %}
-        {% for ad in tutorAds %}
+        {% for ad in tutor_ads %}
           <div class="course">
             <div class="course-preview">
-              <a href="{% url 'profile_user' ad.user.id %}">
+              <a style="color: #fff;" href="{% url 'profile_user' ad.user.id %}">
                 <img src={{ad.user.tutor.profile_pic.url}} class="rounded-circle" width="50">
                 {{ad.user}}
               </a>
@@ -112,7 +120,7 @@
                   <span class="info-text">
                     Date Posted: {{ ad.ad_created|date:'H:i d-m-Y' }} 
                   </span>
-                  <a class="view_more">View More</a>
+                  <a class="view_more" href="{% url 'view_more' ad.id %}" >View More</a>
                   <a href="tel:{{ad.user.tutor.phone}}" class="view_more" style="right: 150px;">Contact</a>
                 </div>
             </div>
@@ -120,21 +128,20 @@
 
                 <div aria-label="Page navigation example">
                   <ul class="pagination justify-content-center">
-                    {% if tutorAds.has_previous %}
-                      <li class="page-item"><a class="page-link" href="?page={{tutorAds.previous_page_number}}">&laquo;</a></li>
+                    {% if tutor_ads.has_previous %}
+                      <li class="page-item"><a class="page-link" href="?page={{tutor_ads.previous_page_number}}">&laquo;</a></li>
                     {% endif %}
                     
-                    {% for page in tutorAds.paginator.page_range %}
-                      {% if tutorAds.number == page %}
+                    {% for page in tutor_ads.paginator.page_range %}
+                      {% if tutor_ads.number == page %}
                       <li class="page-item active"><a class="page-link" href="?page={{page}}">{{page}}</a></li>
                       {% else %}
                       <li class="page-item"><a class="page-link" href="?page={{page}}">{{page}}</a></li>
-                      
                       {% endif %}
                     {%endfor%}
   
-                    {% if tutorAds.has_next %}
-                      <li class="page-item"><a class="page-link" href="?page={{tutorAds.next_page_number}}">&raquo;</a></li>
+                    {% if tutor_ads.has_next %}
+                      <li class="page-item"><a class="page-link" href="?page={{tutor_ads.next_page_number}}">&raquo;</a></li>
                     {% endif %}
                     
                   </ul>
@@ -144,23 +151,52 @@
     </div>
       
           
+    {% if not search %} 
     <div class="col-md-3">
       <h3 class="text-center bg-info text-warning">Filter Search</h3>
-        <form action="{% url 'home' %}">
-          <div class="bg-dark border-right" id="sidebar-wrapper">
-            <div class="list-group list-group-flush">
-             <input type="text">
-             <input type="text">
-             <input type="text">
-             <input type="text">
-             <input type="text">
-              <button type="submit" class="btn btn-success justify-content-center">Search</button>
-            </div>
+      <form action="{% url 'home' %}">
+        <div class="bg-dark border-right" id="sidebar-wrapper">
+          <div class="list-group list-group-flush">
+            <input
+              type="text"
+              name="area"
+              class="form-control"
+              placeholder="Enter area"
+            />
+            <input
+              type="text"
+              name="salary"
+              class="form-control"
+              placeholder="Enter minimum salary"
+            />
+            <input
+              type="text"
+              name="subject"
+              class="form-control"
+              placeholder="Enter subject"
+            />
+            <label for="form-select" class="text-light">Select Gender</label>
+            <select
+              class="form-select"
+              aria-label="Select Gender"
+              name="gender"
+              id="gender"
+            >
+              <option value="male" selected>Male</option>
+              <option value="female">Female</option>
+              <option value="other">Other</option>
+            </select>
+            <button
+              type="submit"
+              class="btn btn-success justify-content-center"
+            >
+              Search
+            </button>
           </div>
-        </form>
-      </div>
-      
-          
+        </div>
+      </form>
+    </div>
+    {% endif %}
     </div>
 </div>
 

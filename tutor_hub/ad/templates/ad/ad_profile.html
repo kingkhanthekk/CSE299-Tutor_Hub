@@ -50,16 +50,15 @@
                       
                     {% else %}
                       <p class="text-muted font-size-sm">
-                        Rating: 
-                        <span class="fas fa-star"></span>
-                        <span class="fas fa-star"></span>
-                        <span class="fas fa-star"></span>
-                        <span class="far fa-star"></span>
-                        <span class="far fa-star"></span>
+                       Rating: {{user.tutor.average_review}}
+                      <span class="fa fa-star {% if user.tutor.average_review >= 1 %} checked {% endif %}"></span>
+                      <span class="fa fa-star {% if user.tutor.average_review >= 2 %} checked {% endif %}"></span>
+                      <span class="fa fa-star {% if user.tutor.average_review >= 3 %} checked {% endif %}"></span>
+                      <span class="fa fa-star {% if user.tutor.average_review >= 4 %} checked {% endif %}"></span>
+                      <span class="fa fa-star {% if user.tutor.average_review >= 5 %} checked {% endif %}"></span>
                       </p>
                       <hr>
-                      <a class="btn btn-primary" href="#"> Write Review</a>
-                      <a class="btn btn-primary mt-2"  href="#"> Previous Review</a>
+                      <a class="btn btn-primary mt-2"  href="{% url 'view_reviews' tutor_id=user.id %}"target="_blank"> Previous Review</a>
                     {% endif %}
                     
                   </div>
@@ -103,7 +102,7 @@
                     <h6 class="mb-0">Gender</h6>
                   </div>
                   <div class="col-sm-9 text-secondary">
-                    {{user.gender}}
+                    {{user.student.gender}}
                     {% else %}
                       <h6 class="mb-0">Tutor Type</h6>
                       </div>
@@ -135,7 +134,7 @@
                 <hr>
                 <div class="row">
                   <div class="col-sm-3">
-                    {% if request.user|has_group:"student" %}
+                    {% if request.user|has_group:"tutor" %}
                     <h6 class="mb-0">Address</h6>
                   </div>
                   <div class="col-sm-9 text-secondary">
@@ -153,7 +152,7 @@
                 <hr>
                 <div class="row">
                   <div class="col-sm-3">
-                    {% if request.user|has_group:"student" %}
+                    {% if request.user|has_group:"tutor" %}
                     <h6 class="mb-0">Area</h6>
                   </div>
                   <div class="col-sm-9 text-secondary">
@@ -171,7 +170,7 @@
                 <hr>
                 <div class="row">
                   <div class="col-sm-3">
-                    {% if request.user|has_group:"student" %}
+                    {% if request.user|has_group:"tutor" %}
                     <h6 class="mb-0">City</h6>
                   </div>
                   <div class="col-sm-9 text-secondary">
@@ -192,7 +191,7 @@
                     <h6 class="mb-0">Institution</h6>
                   </div>
                   <div class="col-sm-9 text-secondary">
-                    {% if request.user|has_group:"student" %}
+                    {% if request.user|has_group:"tutor" %}
                     {{user.student.institution}}
                     {% else %}
                     {{user.tutor.institution}}
@@ -203,7 +202,7 @@
                 <hr>
                 <div class="row">
                   <div class="col-sm-3">
-                    {% if request.user|has_group:"student" %}
+                    {% if request.user|has_group:"tutor" %}
                     <h6 class="mb-0">Class</h6>
                   </div>
                   <div class="col-sm-9 text-secondary">
@@ -257,7 +256,7 @@
                 <hr>
                 <div class="row">
                   <div class="col-sm-3">
-                    {% if request.user|has_group:"student" %}
+                    {% if request.user|has_group:"tutor" %}
                     <h6 class="mb-0">Bio</h6>
                   </div>
                   <div class="col-sm-9 text-secondary">

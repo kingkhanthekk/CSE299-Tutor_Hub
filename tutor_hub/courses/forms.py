@@ -33,6 +33,7 @@ class CreateLectureForm(forms.ModelForm):
         model = Lecture
         fields = ('name','position','description','video','ppt','notes')
 
+
 class ReviewAndCommentForm(forms.ModelForm):
     """
         This is a conceptual class representation of Create lecture Form for tutor to be used in template.

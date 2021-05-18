@@ -30,6 +30,7 @@ def save_class_image(instance,filename):
 class Class(models.Model):
     """
     This is a conceptual Database representation of Class table for all the courses that to be used in the project.
+    
     :param models.Model: It inherits built-in functionalities of django `models.Model`, which handels all validations in django Admin panel
     :type ModelForm: model.Model
 
@@ -83,6 +84,7 @@ def save_lecture_files(instance,filename):
 class Lecture(models.Model):
     """
     This is a conceptual Database representation of `Lectur` table for all the courses taht to be used in the project.
+    
     :param models.Model: It inherits built-in functionalities of django `models.Model`, which handels all validations in django Admin panel
     :type ModelForm: model.Model
 

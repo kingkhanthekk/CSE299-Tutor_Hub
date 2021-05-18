@@ -28,6 +28,7 @@ def unique_course_code_generator(instance):
 
     """
     new_class_code = random_string_generator()
+    
     Klass = instance.__class__
     qs_exists = Klass.objects.filter(class_code=new_class_code).exists()
     if qs_exists:
@@ -74,8 +75,12 @@ def unique_lecture_id_generator(instance):
     "rtype: string
     """
     new_lecture_id = random_string_generator()
+    
     Klass = instance.__class__
     qs_exists = Klass.objects.filter(lecture_id=new_lecture_id).exists()
     if qs_exists:
         return unique_slug_generator(instance)
     return new_lecture_id
+    
+    
+    
