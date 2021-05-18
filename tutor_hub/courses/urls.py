@@ -12,5 +12,7 @@ urlpatterns = [
     path('tutor/class/<str:class_slug>/<slug:slug>/detail',views.tutor_lecture_detail_View, name='tutor_lecture_details'),
     path('tutor/class/<str:class_slug>/<slug:slug>/update',views.LectureUpdateView.as_view(), name='tutor_lecture_update'),
     path('tutor/class/<str:class_slug>/<slug:slug>/delete',views.LectureDeleteView.as_view(), name='tutor_lecture_delete'),
+    path('review/<str:tutor_id>/',views.tutor_review,name='review_tutor'),
+    path('reviews/<str:tutor_id>/',views.view_tutor_review,name='view_reviews'),
     
 ]+ static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
