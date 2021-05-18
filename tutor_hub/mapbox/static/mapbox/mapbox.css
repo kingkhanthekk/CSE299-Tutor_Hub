@@ -1,0 +1,28 @@
+*{
+    margin: 0;
+    padding: 0;
+	
+}
+ul li{
+	list-style: none;
+}
+a{
+	text-decoration: none;
+}
+.nav-item a{
+    display: inline-block; 
+    font-size: 16px; 
+    line-height: 20px; 
+    font-weight: bold; 
+    border-radius: 10px; 
+    padding: 10px 15px; 
+    color: #fff; 
+    margin-left: 30px; 
+    text-decoration: none; 
+    font-family: serif;
+}
+.nav-item a:hover{
+    color: brown;
+    transition: all linear 0.4s;
+	background-color: #fff;
+}
