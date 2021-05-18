@@ -69,3 +69,24 @@ def student_lecture_list_View(request, slug):
     lectures = class_object.lessons.all()
     context = {'lectures': lectures, 'class': class_object}
     return render(request, 'courses/student_lecture_list_view.html', context)
+
+
+def student_lecture_detail_View(request, class_slug, slug):
+    '''
+    This will redirect the url to the lecture_detaails page, where a logged in student can view lecture details of a specific lecture of a certain course
+
+    :param request: Takes the request to show enrolled_students.html
+    :type request: HttpResponse
+    :param class_slug: Takes the class slug from url to slect a particular class from class model
+    :type slug: Slug
+    :param slug: Takes the lecture slug of a specific class from url to slect a particular lecture from Lecture model
+    :type slug: Slug
+    :return: returns arequest for a html page with form data as dictonary format
+    :rtype: render request,html page,dictonary
+
+    '''
+    # student = request.user.student
+    class_object = Class.objects.get(slug=class_slug)
+    lectures = class_object.lessons.filter(slug=slug)
+    context = {'lectures': lectures, 'class': class_object}
+    return render(request, 'courses/student_lecture_detail_view.html', context)
