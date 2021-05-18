@@ -1,0 +1,173 @@
+*{
+    margin: 0;
+    padding: 0;
+	
+}
+ul li{
+	list-style: none;
+}
+a{
+	text-decoration: none;
+}
+nav{
+	width: 100%;
+	height: 80px;
+	background-color: #284DF2;
+	color: #fff;
+}
+.app_name{
+	float: left;
+	width: 40%;
+	margin-left: 50px;
+	font-size: 45px;
+    font-family: 'Dancing Script', cursive;
+	color: #fff;
+}
+.navbar-nav{
+	margin-right: 50px;
+}
+.navbar-toggler {
+	border-color:#fff;
+}
+.navbar-toggler-icon {
+	background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(255,255,255, 1)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 8h24M4 16h24M4 24h24'/%3E%3C/svg%3E");
+}
+  
+.navbar-toggler {
+	border-color: rgb(255, 255, 255);
+}
+.nav-item a{
+	display: inline-block;
+	font-size: 16px;
+    line-height: 20px;
+	font-weight: bold;
+	border-radius: 10px;
+	padding: 10px 15px;
+	color: #fff;
+    margin-left: 50px;
+	text-decoration: none;
+    font-family: serif;
+}
+.nav-item a:hover{
+    color: brown;
+    transition: all linear 0.4s;
+	background-color: #fff;
+}
+
+@import url('https://fonts.googleapis.com/css?family=Muli&display=swap');
+
+* {
+	box-sizing: border-box;
+}
+
+
+body {
+	background-image: linear-gradient(45deg, #333131, #131c4b);
+	font-family: 'Muli', sans-serif;
+	display: flex;
+	align-items: center;
+	flex-direction: column;
+	min-height: 100vh;
+	margin: 0;
+}
+.row{
+	margin-top: 50px;
+}
+.course{
+	background-color: #fff;
+	border-radius: 10px;
+	box-shadow: 0 10px 10px rgba(0, 0, 0, 0.2);
+	display: flex;
+	max-width: 100%;
+	margin: 20px;
+	overflow: hidden;
+	min-height: 200px;
+}
+.course h6{
+	letter-spacing: 1px;
+	text-transform: uppercase;
+}
+.course h2{
+	letter-spacing: 1px;
+	margin: 10px 0;
+}
+.course-preview {
+	background-color: #284DF2;
+	color: #fff;
+	padding: 30px;
+	min-width: 250px;
+}
+.course-preview h6 a{
+	color: #fff;
+}
+.course-preview h6 a:hover{
+	color: rgb(131, 233, 236);
+}
+.course-info {
+	padding: 30px;
+	position: relative;
+	width: 100%;
+}
+.info-text {
+	font-size: 13px;
+	letter-spacing: 1px;
+	opacity: 0.6;
+}
+.view_more{
+	background-color: #284DF2;
+	border: 0;
+	border-radius: 50px;
+	box-shadow: 0 10px 10px rgba(0, 0, 0, 0.2);
+	color: #fff;
+	font-size: 16px;
+	padding: 7px 12px;
+	position: absolute;
+	bottom: 15px;
+	right: 30px;
+	letter-spacing: 1px;
+}
+.view_more:hover{
+	transition: all linear 0.6s;
+	background-color: #16aa60;
+	color: #fff;
+}
+
+.delete_post{
+	background-color: #284DF2;
+	border: 0;
+	border-radius: 50px;
+	box-shadow: 0 10px 10px rgba(0, 0, 0, 0.2);
+	color: #fff;
+	font-size: 16px;
+	padding: 7px 12px;
+	position: absolute;
+	bottom: 15px;
+	right: 60px;
+	letter-spacing: 1px;
+}
+.delete_post:hover{
+	transition: all linear 0.6s;
+	background-color: #ff0015;
+	color: #fff;
+}
+.course-info a{
+	text-decoration: none;
+}
+.contact{
+	background-color: #284DF2;
+	border: 0;
+	text-decoration: none;
+	border-radius: 50px;
+	box-shadow: 0 10px 10px rgba(0, 0, 0, 0.2);
+	color: #fff;
+	font-size: 16px;
+	padding: 7px 12px;
+	position: absolute;
+	bottom: 15px;
+	right: 200px;
+	letter-spacing: 1px;
+}
+.contact:hover{
+	transition: all linear 0.6s;
+	background-color: #16aa60;
+}

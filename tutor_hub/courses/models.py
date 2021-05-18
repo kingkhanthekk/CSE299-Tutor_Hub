@@ -2,6 +2,7 @@ from django.db import models
 from django.template.defaultfilters import slugify
 from home.models import Tutor,Student
 from django.db.models.signals import pre_save
+#from tutor_hub.utils import unique_slug_generator
 from courses.utils import unique_course_code_generator,unique_slug_generator,unique_lecture_id_generator
 from django.urls import reverse
 import os
@@ -29,7 +30,6 @@ def save_class_image(instance,filename):
 class Class(models.Model):
     """
     This is a conceptual Database representation of Class table for all the courses that to be used in the project.
-    
     :param models.Model: It inherits built-in functionalities of django `models.Model`, which handels all validations in django Admin panel
     :type ModelForm: model.Model
 
@@ -83,7 +83,6 @@ def save_lecture_files(instance,filename):
 class Lecture(models.Model):
     """
     This is a conceptual Database representation of `Lectur` table for all the courses taht to be used in the project.
-    
     :param models.Model: It inherits built-in functionalities of django `models.Model`, which handels all validations in django Admin panel
     :type ModelForm: model.Model
 

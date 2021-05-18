@@ -1,0 +1,11 @@
+.col-centered {
+  float: none;
+  margin: 0 auto;
+}
+.row {
+  color: antiquewhite;
+}
+.body {
+  background-image: url("/banner.png");
+  background-size: cover;
+}

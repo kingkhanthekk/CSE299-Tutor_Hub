@@ -1,6 +1,9 @@
+'''
+This program is for mapping the views and URLs
+'''
+
 from django.urls import path
 from .import  views
-from ad import views as ad_View
 from django.contrib.auth import views as auth_views
 
  
@@ -9,7 +12,7 @@ urlpatterns = [
     path('signup/', views.signup, name='signup'),
     path('signin/', views.signin, name='signin'),
     path('signout/', views.signout, name='signout'),
-    path('home/', ad_View.home, name='home'),
+    path('profile/', views.profile, name='profile'),
     path('edit_profile_tutor/', views.edit_profile_tutor, name='edit_profile_tutor'),
     path('edit_profile_student/', views.edit_profile_student, name='edit_profile_student'),
     path('delete_profile/', views.delete_profile, name='delete_profile'),

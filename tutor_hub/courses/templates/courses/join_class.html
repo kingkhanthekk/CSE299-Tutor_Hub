@@ -1,0 +1,66 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Online Classroom | Join Class</title>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" >
+    <link rel="stylesheet" href="{% static 'courses/joinclass.css'%}">
+    
+</head>
+<body>
+    <div class="main-container">
+        <nav class="navbar nav navbar-expand-lg">
+            <div class="app_name">Online Class</div>
+            <button
+              class="navbar-toggler"
+              type="button"
+              data-toggle="collapse"
+              data-target="#navbarNavDropdown"
+              aria-controls="navbarNavDropdown"
+              aria-expanded="false"
+              aria-label="Toggle navigation"
+            >
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNavDropdown">
+              <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'student_dashboard' %}">Dashboard</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'home' %}">Home</a>
+                </li>
+              </ul>
+            </div>
+          </nav>
+        <div class="body-content">
+            <div class="text-center">
+                <div class="join-class-container">
+                    <div class="container d-flex justify-content-center">
+                        <form class="form-inline" method="POST">
+                            {% csrf_token %}
+                            <div class="form-group">
+                                <input type="input" class="form-control " name="class_code" id="class_code" type="text" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter class code '" placeholder="Enter Class Code" />
+                                <button type="submit" class="btn btn-primary ml-2">Join Class</button>    
+                            </div>
+                            </form>
+
+                        {% for message in messages %}
+                            <div class="alert alert-danger" role="alert">{{messages}}</div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>    
+        </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" crossorigin="anonymous"></script>
+    <script src="{% static 'courses/js/classroom.js'%}"></script>
+</body>
+</html>
