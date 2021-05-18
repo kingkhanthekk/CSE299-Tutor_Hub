@@ -1,0 +1,90 @@
+{% load static %}
+{% load group %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" >
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{% static 'home.css' %}">
+    <title>Tutor Hub | My Ad </title>
+</head>
+<body>
+  <nav class="navbar nav navbar-expand-lg">
+    <div class="app_name" href="#">Tutor Hub</div>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavDropdown">
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item active">
+          <a class="nav-link" href="{% url 'home' %}">Back to Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'signout' %}">Sign Out</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+      
+<div class="container home">
+    <div class="card-header bg-info" >
+        <h1 class="text-center">All posts by {{ user }}</h1>
+      </div>
+        
+
+        {% if request.user|has_group:"student" %} 
+        
+          {% for ad in myStudentAds %}
+          <div class="course">
+            <div class="course-preview">
+                <h2>{{ ad.subject }}</h2>
+              </div>
+              <div class="course-info">
+                  <h2>{{ ad.title }}</h2>
+                  <h5>{{ ad.days }} Days Per Week</h5>
+                  <h5>Salary: {{ ad.salary }} Taka</h5>
+                  <h5>Class / Level: {{ ad.class_level }}</h5>
+                  <h5>Gender of the Tutor: {{ ad.gender }}</h5>
+                  <h5>Overall description: {{ ad.description }}</h5>
+                  <span class="info-text">
+                    Date Posted: {{ ad.ad_created|date:'H:i d-m-Y' }} 
+                  </span>
+                  <a class="delete_post" href="{% url 'delete_post_student' ad.pk %}">Delete Post</a>
+                </div>
+            </div>
+          {% endfor %}
+
+        {% else %}
+
+          {% for ad in myTutorAds %}
+          <div class="course">
+            <div class="course-preview">
+                <h2>{{ ad.subject }}</h2>
+              </div>
+              <div class="course-info">
+                  <h2>{{ ad.title }}</h2>
+                  <h5>{{ ad.days }} Days Per Week</h5>
+                  <h5>Salary Expecting: {{ ad.expected_salary }} Taka</h5>
+                  <h5>Class / Level: {{ ad.class_level }}</h5>
+                  <h5>Gender Preferrence: {{ ad.gender }}</h5>
+                  <h5>Overall description: {{ ad.description }}</h5>
+                  <span class="info-text">
+                    Date Posted: {{ ad.ad_created|date:'H:i d-m-Y' }} 
+                  </span>
+                  <a class="delete_post" href="{% url 'delete_post_tutor' ad.pk %}">Delete Post</a>
+                </div>
+            </div>
+            {% endfor %}
+        {% endif %}
+    
+
+
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" crossorigin="anonymous"></script>
+        
+</body>

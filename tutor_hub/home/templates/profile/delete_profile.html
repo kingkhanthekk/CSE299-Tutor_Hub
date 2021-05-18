@@ -1,0 +1,40 @@
+{% load static %}
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700,900&display=swap" rel="stylesheet">
+  <!-- Bootstrap CSS -->
+  <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css'>
+  <!-- Font Awesome CSS -->
+  <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css'>
+  <link rel='stylesheet' href ="{% static 'profile/profile.css' %}">
+  <title>Profile</title>
+</head>
+<body>
+  <nav>
+    <input id="nav-toggle" type="checkbox">
+    <div class="app_name">Tutor Hub</div>
+    <ul>
+        <li><a href="{% url 'home' %}">Home</a></li>
+        <li><a href="{% url 'signout' %}">Signout</a></li>
+
+    </ul>
+    <label for="nav-toggle" class="three_lines">
+        <div class="line"></div>
+        <div class="line"></div>
+        <div class="line"></div>
+    </label>
+</nav>
+</body>
+<div class="container">
+    <h2>Delete Account</h2>
+    <br> <br> <br>
+    <form method="POST" action="#">
+        {% csrf_token %}
+        <p>Are you sure you want to delete this account?</p>
+        <button type="submit" class="btn btn-danger">Delete</button>
+    </form>
+    <a href="{% url 'profile' %}">No, keep my account</a>
+</div>

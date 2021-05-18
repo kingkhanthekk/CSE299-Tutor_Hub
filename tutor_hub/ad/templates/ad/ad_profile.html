@@ -1,0 +1,285 @@
+{% load static %}
+{% load group %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link href="https://fonts.googleapis.com/css?family=Lato:300,400,700,900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" >
+<link rel='stylesheet' href ="{% static 'user_profile.css' %}">
+<title>{{user.username}}'s Profile</title>
+</head>
+<body>
+    <nav class="navbar nav navbar-expand-lg">
+        <div class="app_name" href="#">Tutor Hub</div>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavDropdown">
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'home' %}">Back to home</a>
+            </li> 
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'signout' %}">Sign Out</a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+
+<div class="container user-profile">
+  <div class="main-body">
+        <div class="row gutters-sm">
+          <div class="col-md-4 mb-3">
+            <div class="card">
+              <div class="card-body">
+                <div class="d-flex flex-column align-items-center text-center">
+                  {% if request.user|has_group:"student" %}
+                  <img src={{user.tutor.profile_pic.url}} class="rounded-circle" width="150">
+                  {% else %}
+                  <img src={{user.student.profile_pic.url}} class="rounded-circle" width="150">
+                  {% endif %}
+                 
+                  <div class="mt-3">
+                    <h4>{{ user.username }}</h4>
+                    {% if request.user|has_group:"tutor" %}
+                      
+                    {% else %}
+                      <p class="text-muted font-size-sm">
+                        Rating: 
+                        <span class="fas fa-star"></span>
+                        <span class="fas fa-star"></span>
+                        <span class="fas fa-star"></span>
+                        <span class="far fa-star"></span>
+                        <span class="far fa-star"></span>
+                      </p>
+                      <hr>
+                      <a class="btn btn-primary" href="#"> Write Review</a>
+                      <a class="btn btn-primary mt-2"  href="#"> Previous Review</a>
+                    {% endif %}
+                    
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-8">
+            <div class="card mb-3">
+              <div class="card-body">
+                <div class="row">
+                  <div class="col-sm-3">
+                    <h6 class="mb-0"> First Name</h6>
+                  </div>
+                  <div class="col-sm-9 text-secondary">
+                    {{user.first_name}}
+                  </div>
+                </div>
+                <hr>
+                <div class="row">
+                  <div class="col-sm-3">
+                    <h6 class="mb-0"> Last Name</h6>
+                  </div>
+                  <div class="col-sm-9 text-secondary">
+                    {{user.last_name}}
+                  </div>
+                </div>
+                <hr>
+                <div class="row">
+                  <div class="col-sm-3">
+                    <h6 class="mb-0">Email</h6>
+                  </div>
+                  <div class="col-sm-9 text-secondary">
+                      {{user.email}}
+                  </div>
+                </div>
+                <hr>
+                <div class="row">
+                  <div class="col-sm-3">
+                    {% if request.user|has_group:"tutor" %}
+                    <h6 class="mb-0">Gender</h6>
+                  </div>
+                  <div class="col-sm-9 text-secondary">
+                    {{user.gender}}
+                    {% else %}
+                      <h6 class="mb-0">Tutor Type</h6>
+                      </div>
+                      <div class="col-sm-9 text-secondary">
+                    {{user.tutor.tutor_type}}
+                    
+                    {% endif %}
+                  </div>
+                </div>
+
+                <hr>
+                <div class="row">
+                  <div class="col-sm-3">
+                    {% if request.user|has_group:"tutor" %}
+                    <h6 class="mb-0">Date of Birth</h6>
+                  </div>
+                  <div class="col-sm-9 text-secondary">
+                    {{user.student.birth_date}}
+                    {% else %}
+                      <h6 class="mb-0">Date of Birth</h6>
+                      </div>
+                      <div class="col-sm-9 text-secondary">
+                    {{user.tutor.birth_date}}
+                    
+                    {% endif %}
+                  </div>
+                </div>
+
+                <hr>
+                <div class="row">
+                  <div class="col-sm-3">
+                    {% if request.user|has_group:"student" %}
+                    <h6 class="mb-0">Address</h6>
+                  </div>
+                  <div class="col-sm-9 text-secondary">
+                    {{user.student.address}}
+                    {% else %}
+                      <h6 class="mb-0">Address</h6>
+                      </div>
+                      <div class="col-sm-9 text-secondary">
+                    {{user.tutor.address}}
+                    
+                    {% endif %}
+                  </div>
+                </div>
+
+                <hr>
+                <div class="row">
+                  <div class="col-sm-3">
+                    {% if request.user|has_group:"student" %}
+                    <h6 class="mb-0">Area</h6>
+                  </div>
+                  <div class="col-sm-9 text-secondary">
+                    {{user.student.area}}
+                    {% else %}
+                      <h6 class="mb-0">Area</h6>
+                      </div>
+                      <div class="col-sm-9 text-secondary">
+                    {{user.tutor.area}}
+                    
+                    {% endif %}
+                  </div>
+                </div>
+
+                <hr>
+                <div class="row">
+                  <div class="col-sm-3">
+                    {% if request.user|has_group:"student" %}
+                    <h6 class="mb-0">City</h6>
+                  </div>
+                  <div class="col-sm-9 text-secondary">
+                    {{user.student.city}}
+                    {% else %}
+                      <h6 class="mb-0">City</h6>
+                      </div>
+                      <div class="col-sm-9 text-secondary">
+                    {{user.tutor.city}}
+                    
+                    {% endif %}
+                  </div>
+                </div>
+
+                <hr>
+                <div class="row">
+                  <div class="col-sm-3">
+                    <h6 class="mb-0">Institution</h6>
+                  </div>
+                  <div class="col-sm-9 text-secondary">
+                    {% if request.user|has_group:"student" %}
+                    {{user.student.institution}}
+                    {% else %}
+                    {{user.tutor.institution}}
+                    {% endif %}
+                  </div>
+                </div>
+
+                <hr>
+                <div class="row">
+                  <div class="col-sm-3">
+                    {% if request.user|has_group:"student" %}
+                    <h6 class="mb-0">Class</h6>
+                  </div>
+                  <div class="col-sm-9 text-secondary">
+                    {{user.student.class_level}}
+                    {% else %}
+                      <h6 class="mb-0">Qualification</h6>
+                      </div>
+                      <div class="col-sm-9 text-secondary">
+                    {{user.tutor.qualification}}
+                    
+                    {% endif %}
+                  </div>
+                </div>
+
+                <hr>
+                <div class="row">
+                  <div class="col-sm-3">
+                    {% if request.user|has_group:"student" %}
+                    <h6 class="mb-0">Department</h6>
+                  </div>
+                  <div class="col-sm-9 text-secondary">
+                    {{user.student.department}}
+                    {% else %}
+                      <h6 class="mb-0">Subject Teaching</h6>
+                      </div>
+                      <div class="col-sm-9 text-secondary">
+                    {{user.tutor.subject_teach}}
+
+                    {% endif %}
+                  </div>
+                </div>
+              
+                
+
+                <hr>
+                <div class="row">
+                  <div class="col-sm-3">
+                    {% if request.user|has_group:"student" %}
+                    <h6 class="mb-0">Phone</h6>
+                  </div>
+                  <div class="col-sm-9 text-secondary">
+                    {{user.tutor.phone}}
+                    {% else %}
+                      <h6 class="mb-0">Phone</h6>
+                      </div>
+                      <div class="col-sm-9 text-secondary">
+                    {{user.student.phone}}
+                    {% endif %}
+                  </div>
+                </div>
+                <hr>
+                <div class="row">
+                  <div class="col-sm-3">
+                    {% if request.user|has_group:"student" %}
+                    <h6 class="mb-0">Bio</h6>
+                  </div>
+                  <div class="col-sm-9 text-secondary">
+                    {{user.student.bio}}
+                    {% else %}
+                      <h6 class="mb-0">Preffered Area</h6>
+                      </div>
+                      <div class="col-sm-9 text-secondary">
+                    {{user.tutor.preffered_area}}
+                    {% endif %}
+                  </div>
+                </div>     
+              </div>
+            </div>
+            </div>
+          </div>
+        </div>
+      </div>
+  </div>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" crossorigin="anonymous"></script>
+  
+</body>
+</html>

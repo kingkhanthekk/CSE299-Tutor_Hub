@@ -1,0 +1,74 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Online Classroom | Tutor Lecture List</title>
+    <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700,900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" >
+    <link rel="stylesheet" href="{% static 'courses/css/studentLectureList.css'%}">
+    
+</head>
+<body>
+    <div class="main-container">
+        <nav class="navbar nav navbar-expand-lg">
+            <div class="app_name">Online Class</div>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNavDropdown">
+              <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                  <a class="nav-link" href="{% url 'create_class' %}">Create Class</a>
+                </li> 
+                <li class="nav-item">
+                  <a class="nav-link" href="{% url 'tutor_dashboard' %}">Dashboard</a>
+                </li>
+              </ul>
+            </div>
+          </nav>
+
+        <div class="body-content">
+            <div class="cont">
+            <!--  Start First Button  -->
+                <div class="fe">
+                    <button class="btn one"><a href="{% url 'create_lecture' slug=class.slug %}"> Add new Lecture</a></button>
+                
+                </div>
+                <!--  End First Button  -->
+
+                <!--  Start Second Button  -->
+                <div class="fe">
+                    <button class="btn tow"><a href="{% url 'enrolled_students' slug=class.slug %}"> View Enrolled Students</a></button>
+                </div>
+                <!--  End Second Button  -->
+            </div>
+
+
+            <div class="container">
+                {% for lecture in lectures %}
+                <div class="left-div left-text">
+                    <a href="{% url 'tutor_lecture_details' class_slug=class.slug  slug=lecture.slug%}">Lecture - {{lecture.position}}: {{lecture.name}}</a>                
+                </div>
+                {%endfor%}
+            </div>
+        </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" crossorigin="anonymous"></script>
+    <script src="{% static 'courses/js/classroom.js'%}"></script>
+</body>
+</html>
+
+
+
+
+
+
+
+

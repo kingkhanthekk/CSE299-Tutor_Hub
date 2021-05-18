@@ -1,0 +1,87 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Online Classroom | Tutor Dashboard</title>
+    <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700,900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" >
+    <link rel="stylesheet" href="{% static 'courses/css/gribflex.css'%}">
+</head>
+<body>
+    <div class="main-container">
+        <nav class="navbar nav navbar-expand-lg">
+            <div class="app_name">Online Class</div>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNavDropdown">
+              <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                  <a class="nav-link" href="{% url 'create_class' %}">Create Class</a>
+                </li> 
+                <li class="nav-item">
+                  <a class="nav-link" href="{% url 'home' %}">Home</a>
+                </li>
+              </ul>
+            </div>
+          </nav>
+        <div class="body-content">
+            <div class="content-menu btnOpen">
+                <div class="img-prof">
+                    <div class="img-profile">
+                        <span class="profile-picture"></span>
+                    </div>
+                    <div class="profile-info">
+                        <ul>
+                            <li class="menu-profile-name">
+                                <label>{{request.user.first_name}} {{request.user.last_name}}</label></li>
+                            <li class="color-info"><label> {{request.user.tutor.institution}}</label></li>
+                            <li class="color-info"><label> {{request.user.tutor.tutor_type}},{{request.user.tutor.online_teach_exp}} years</label>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="profile-buttons">
+                    <div class="edit-btn">
+                        <button class="btn btn-info"><a style="text-decoration: none; color: black;" href="{% url 'edit_profile_tutor' %}">Edit Profile</a></button>
+                    </div>
+                    <div class="logout-btn">
+                        <button class="btn btn-danger"><a style="text-decoration: none; color: black;" href="{% url 'signout' %}">Signout</a></button>
+                    </div>
+                </div>
+            </div>
+            <div class="content-items">
+               <div class="courses-and-rooms">
+                   
+                   {% for class in classes %}
+                        <div class="class1">
+                            <div class="class-rooms">
+                                <div class="class-room-title">
+                                    <div>
+                                        <label class="subject"><a class = "subject-title-classview"  href="{% url 'tutor_lecture_list_view' class.slug %}" >{{class.title}} </a></label>
+                                        <label>Teacher, {{class.tutor.user.first_name}} {{class.tutor.user.last_name}}</label>
+                                    </div>
+                                    <span class="classroom-profile-pic"></span>
+                                    </div>
+                                <div class="class-room-discription">
+                                    <label>Every Tuesday</label>
+                                    </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                   
+               </div>
+            </div>
+
+    </div>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" crossorigin="anonymous"></script>
+    <script src="{% static 'courses/js/classroom.js'%}"></script>
+</body>
+</html>

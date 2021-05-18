@@ -1,0 +1,445 @@
+
+* {
+    box-sizing: border-box;
+}
+html, body {
+    margin: 0;
+    padding: 0;
+    font-family: FreeMono, monospace;
+}
+.main-container{
+    display: flex;
+    flex-direction: column; 
+}
+
+nav{
+	width: 100%;
+	height: 80px;
+	background-color: #284DF2;
+	color: #fff;
+}
+.app_name{
+	float: left;
+	width: 40%;
+	margin-left: 50px;
+	font-size: 45px;
+    font-family: 'Dancing Script', cursive;
+	color: #fff;
+}
+.navbar-nav{
+	margin-right: 50px;
+}
+.navbar-toggler {
+	border-color:#fff;
+}
+.navbar-toggler-icon {
+	background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(255,255,255, 1)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 8h24M4 16h24M4 24h24'/%3E%3C/svg%3E");
+}
+  
+.navbar-toggler {
+	border-color: rgb(255, 255, 255);
+}
+.nav-item a{
+	display: inline-block;
+	font-size: 16px;
+    line-height: 20px;
+	font-weight: bold;
+	border-radius: 10px;
+	padding: 10px 15px;
+	color: #fff;
+    margin-left: 50px;
+	text-decoration: none;
+    font-family: serif;
+}
+.nav-item a:hover{
+    color: brown;
+    transition: all linear 0.4s;
+	background-color: #fff;
+}
+.body-content { 
+    width: 100%;
+    display: flex;
+    grid-gap: 1em;
+    padding: 1em;
+   margin-left: 10%;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.content-items{
+    justify-content: center;
+}
+.class1 {
+    padding: 10px;
+    
+}
+.class2 {
+    background-color: darkseagreen;
+}
+.class3 {
+    background-color: darkturquoise;
+}
+.class4{
+    background-color: darkgrey;
+}
+.class-rooms {
+    display: flex;
+    flex-direction: column; 
+    height: 100%;
+    width: 80%;
+    color: rgb(76 76 76);
+    box-shadow: -2px 5px 4px #afafaf;
+    border-radius: 5px;
+}
+.class-rooms:hover {
+    box-shadow: -2px 5px 11px #afafaf;
+    cursor: pointer;
+}
+
+.class-room-title{
+    background-color: #24a587;
+    background: url('./images/png-jpg-gif-featured-image.jpg');
+    background-size: cover; 
+    background-repeat: no-repeat;
+    height: 20vh;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.class-room-title-2{
+    background: url('./images/socialpeople.png');
+    background-size: cover; 
+    background-repeat: no-repeat;
+}
+
+.class-room-title .subject {
+    font-weight: bold;
+    font-size: 20px;
+}
+.class-room-title div {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    order: 2; 
+    font-size: 15px;
+}
+.class-room-title div label {
+    display: flex;
+    justify-content: flex-end; 
+}
+.classroom-profile-pic {
+    order: 1;
+    height: 75px;
+    width: 75px;
+    background-color: rgb(189 189 189);
+    border-radius: 50%;
+    background: url('./images/profilepic.png');
+    background-repeat: no-repeat;
+    background-size: cover; 
+}
+.class-room-discription {
+    height: 10vh;
+    display: flex;
+    flex-direction: column;
+}
+.class-room-title,
+.class-room-discription {
+    padding: 10px;
+    border-radius: 5px;
+}
+.content-menu {
+     grid-row: 1/ span 2;
+     height: 80vh; 
+     padding: 10px;
+     background-color: rgb(216,216,216);  
+     border-radius: 5px;
+     display: flex;
+     flex-direction: column;
+     justify-content: space-between;
+     box-shadow: 2px 2px 3px #a9a9a9ee;
+}
+.img-profile {
+    display: flex; 
+    justify-content: center;
+}
+.profile-picture {
+    height: 150px;
+    width: 150px;
+    background-color: rgb(189 189 189);
+    border-radius: 50%;
+    background: url('./images/profilepic.png');
+    background-repeat: no-repeat;
+    background-size: cover; 
+}
+.menu-profile-name{
+    text-align: center;
+    text-transform: uppercase;
+    font-size: 20px;
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+.profile-info {
+    padding-left: 1em;
+    margin-top: 5px;
+}
+.profile-info ul {
+    color: rgb(76 76 76);
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+.profile-info ul li {
+    margin-top: 3px;
+}
+.color-info { 
+    margin-bottom: 5px;
+    color: #6d6d6d;
+} 
+.menu-items { 
+    height: 100%;
+}   
+.informations{ 
+    background-color: rgb(216,216,216);
+    box-shadow: rgba(169, 169, 169, 0.933) 2px 2px 3px;
+    border-radius: 5px;
+}
+
+.profile-info ul li label {
+    vertical-align: top
+}
+.footer-content {  
+    background-color: rgb(154 154 154);
+    color: rgb(241 241 241);
+    padding: 12px;  
+}
+.footer-content ul {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    list-style: none;
+    text-transform: uppercase;
+    font-weight: bold;
+}
+.footer-content .copyright-page {
+    display: flex;
+    justify-content: center;
+    color: #5f5f5fee;
+    margin-left: 3em;
+}
+.footer-content ul li a {
+    margin-left: 20px;
+    text-decoration: none;
+    color: #5a5a5a;
+}
+.edit-btn > button {
+    background-color: #969696;
+    border: 0;
+    color: #eeee;
+    outline: 0;
+    cursor: pointer;
+}
+.logout-btn > button {
+    border: 0;
+    outline: 0;
+    cursor: pointer;
+    color: #716969;
+}
+.logout-btn > button:active {
+    background-color: #ffffffd9
+}
+
+.edit-btn > button:active {
+    background-color: #b3b1b1;
+}
+.edit-btn > button,
+.logout-btn > button{
+    padding: 1em;
+    width: 100%;
+    margin-top: 5px;
+    text-transform: uppercase;
+}
+
+.addClass{
+    display: flex;
+    background: url('./images/iconfinder_plus_925914.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 15px;
+    width: 15px;
+    cursor: pointer;
+ } 
+ .plus-menu {
+    display: none;
+}
+@media screen and (max-width: 1423px) {
+    .courses-and-rooms {
+        grid-template-columns: 1fr 1fr;
+    }
+    .body-content {
+        grid-template-columns: 20% 3fr;
+    }
+   
+}
+
+@media screen and (max-width: 850px){
+    .courses-and-rooms {
+        grid-template-columns: 1fr;
+    }
+    .content-menu {
+        display: none;
+    }
+    .body-content {
+        grid-template-columns: 3fr;
+    }
+    .button-nav{
+        display: flex;
+        flex-direction: column;
+        cursor: pointer;
+        z-index: 1;
+        width: 50px;
+    }
+
+    .button-nav .line{ 
+        transform: translate(7px, 15px);
+        background-color: rgb(143, 143, 143);
+        width: 30px;
+        height: 4px;
+        margin: 2px;
+    }
+    .btnOpen {
+        position: fixed;
+        display: flex;
+        justify-content: flex-start;
+        height: 100%;
+        width: 100%;
+        top: 0;
+        left: -1000px;
+        transition: 0.5s;
+    }
+    .btnOpen.active { 
+        left: 0;
+    }
+    body.removeScroll {
+        overflow: hidden;
+    }
+    .menu-header .menu-classroom{
+        display: none;
+    }
+   .plus-menu {
+       display: block;
+       list-style: none;
+   }
+   .menu-header
+    {
+        display: flex;
+        justify-content: flex-end;
+    }
+    .drop-downmenu.openmenu {
+        display: block;
+        background-color: #c7c7c7;
+        position: absolute;
+        padding: 0;
+        box-shadow: 3px 2px 3px #61616194;
+        transform: translate(-125px, -20px);
+        color: #1f1b1bee;
+        border-radius: 2px;
+    }
+    .drop-downmenu {
+        display: none;
+    }
+    .drop-downmenu ul  {
+        list-style: none;
+        padding: 0;
+        width: 9em;
+    }
+    .drop-downmenu ul li {
+        margin: 14px;
+            padding-left: 4px; 
+    }
+     
+    
+}
+
+
+
+
+table {
+    border: 1px #a39485 solid;
+    font-size: .9em;
+    box-shadow: 0 2px 5px rgba(0,0,0,.25);
+    margin-top: 4%;
+    width: 80%;
+    border-collapse: collapse;
+    border-radius: 5px;
+    overflow: hidden;
+  }
+  
+  th {
+    text-align: left;
+  }
+    
+  thead {
+    font-weight: bold;
+    color: #fff;
+    background: #73685d;
+  }
+    
+   td, th {
+    padding: 1em .5em;
+    vertical-align: middle;
+  }
+    
+   td {
+    border-bottom: 1px solid rgba(0,0,0,.1);
+    background: #fff;
+  }
+  
+  a {
+    color: #73685d;
+  }
+    
+   @media all and (max-width: 768px) {
+      
+    table, thead, tbody, th, td, tr {
+      display: block;
+    }
+    
+    th {
+      text-align: right;
+    }
+    
+    table {
+      position: relative; 
+      padding-bottom: 0;
+      border: none;
+      box-shadow: 0 0 10px rgba(0,0,0,.2);
+    }
+    
+    thead {
+      float: left;
+      white-space: nowrap;
+    }
+    
+    tbody {
+      overflow-x: auto;
+      overflow-y: hidden;
+      position: relative;
+      white-space: nowrap;
+    }
+    
+    tr {
+      display: inline-block;
+      vertical-align: top;
+    }
+    
+    th {
+      border-bottom: 1px solid #a39485;
+    }
+    
+    td {
+      border-bottom: 1px solid #e5e5e5;
+    }
+    
+    
+    }
