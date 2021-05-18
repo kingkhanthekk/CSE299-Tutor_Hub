@@ -64,3 +64,22 @@ def unique_slug_generator(instance, new_slug=None):
         )
         return unique_slug_generator(instance, new_slug=new_slug)
     return slug
+
+
+def unique_lecture_id_generator(instance):
+    """
+    This is for a Django project and it assumes your instance 
+    has a model with a lecture_id field.
+
+    :param instance: Takes a instance of a `Lecture` model's object
+    :type instance: instance
+    :return: it returns a random string of 10 character
+    "rtype: string
+    """
+    new_lecture_id = random_string_generator()
+
+    Klass = instance.__class__
+    qs_exists = Klass.objects.filter(lecture_id=new_lecture_id).exists()
+    if qs_exists:
+        return unique_slug_generator(instance)
+    return new_lecture_id
